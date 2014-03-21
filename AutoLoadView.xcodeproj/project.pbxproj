@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3107773618D981AC00E7CEF9 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3107773518D981AC00E7CEF9 /* 2.png */; };
+		310814FF18DAC86400C90513 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814F618DAC86400C90513 /* 1.png */; };
+		3108150018DAC86400C90513 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814F718DAC86400C90513 /* 2.png */; };
+		3108150118DAC86400C90513 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814F818DAC86400C90513 /* 3.png */; };
+		3108150218DAC86400C90513 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814F918DAC86400C90513 /* 4.png */; };
+		3108150318DAC86400C90513 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814FA18DAC86400C90513 /* 5.png */; };
+		3108150418DAC86400C90513 /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814FB18DAC86400C90513 /* 6.png */; };
+		3108150518DAC86400C90513 /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814FC18DAC86400C90513 /* 7.png */; };
+		3108150618DAC86400C90513 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814FD18DAC86400C90513 /* 8.png */; };
+		3108150718DAC86400C90513 /* 9.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814FE18DAC86400C90513 /* 9.png */; };
+		3108150918DACF5D00C90513 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3108150818DACF5D00C90513 /* QuartzCore.framework */; };
+		3108154F18DADA4200C90513 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311498E418D93AE700906ED5 /* Foundation.framework */; };
+		3108155218DADA4200C90513 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3108155118DADA4200C90513 /* main.m */; };
+		3108155618DADA4200C90513 /* shiyan.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3108155518DADA4200C90513 /* shiyan.1 */; };
 		311498E518D93AE700906ED5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311498E418D93AE700906ED5 /* Foundation.framework */; };
 		311498E718D93AE700906ED5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311498E618D93AE700906ED5 /* CoreGraphics.framework */; };
 		311498E918D93AE700906ED5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311498E818D93AE700906ED5 /* UIKit.framework */; };
@@ -21,6 +35,13 @@
 		3114990618D93AE700906ED5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311498E818D93AE700906ED5 /* UIKit.framework */; };
 		3114990E18D93AE700906ED5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3114990C18D93AE700906ED5 /* InfoPlist.strings */; };
 		3114991018D93AE700906ED5 /* AutoLoadViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114990F18D93AE700906ED5 /* AutoLoadViewTests.m */; };
+		3114991B18D93B1F00906ED5 /* wDynamicLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114991A18D93B1F00906ED5 /* wDynamicLayout.m */; };
+		3114991E18D93B2F00906ED5 /* customButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114991D18D93B2F00906ED5 /* customButton.m */; };
+		3114992018D93B9300906ED5 /* DocumentsLayout.json in Resources */ = {isa = PBXBuildFile; fileRef = 3114991F18D93B9300906ED5 /* DocumentsLayout.json */; };
+		3114992618D93CC900906ED5 /* customView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114992518D93CC900906ED5 /* customView.m */; };
+		3114992B18D93D2100906ED5 /* firstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114992818D93D2100906ED5 /* firstViewController.m */; };
+		3114992C18D93D2100906ED5 /* secondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114992A18D93D2100906ED5 /* secondViewController.m */; };
+		31A852F618DC38AE00890469 /* CountString.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A852F518DC38AE00890469 /* CountString.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +54,35 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3108154C18DADA4100C90513 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				3108155618DADA4200C90513 /* shiyan.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3107773518D981AC00E7CEF9 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		310814F618DAC86400C90513 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		310814F718DAC86400C90513 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		310814F818DAC86400C90513 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		310814F918DAC86400C90513 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		310814FA18DAC86400C90513 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		310814FB18DAC86400C90513 /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		310814FC18DAC86400C90513 /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		310814FD18DAC86400C90513 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
+		310814FE18DAC86400C90513 /* 9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9.png; sourceTree = "<group>"; };
+		3108150818DACF5D00C90513 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3108154E18DADA4200C90513 /* shiyan */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = shiyan; sourceTree = BUILT_PRODUCTS_DIR; };
+		3108155118DADA4200C90513 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3108155418DADA4200C90513 /* shiyan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "shiyan-Prefix.pch"; sourceTree = "<group>"; };
+		3108155518DADA4200C90513 /* shiyan.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = shiyan.1; sourceTree = "<group>"; };
 		311498E118D93AE700906ED5 /* AutoLoadView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoLoadView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		311498E418D93AE700906ED5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		311498E618D93AE700906ED5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,13 +102,36 @@
 		3114990B18D93AE700906ED5 /* AutoLoadViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AutoLoadViewTests-Info.plist"; sourceTree = "<group>"; };
 		3114990D18D93AE700906ED5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3114990F18D93AE700906ED5 /* AutoLoadViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoLoadViewTests.m; sourceTree = "<group>"; };
+		3114991918D93B1F00906ED5 /* wDynamicLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wDynamicLayout.h; sourceTree = "<group>"; };
+		3114991A18D93B1F00906ED5 /* wDynamicLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = wDynamicLayout.m; sourceTree = "<group>"; };
+		3114991C18D93B2F00906ED5 /* customButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customButton.h; sourceTree = "<group>"; };
+		3114991D18D93B2F00906ED5 /* customButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customButton.m; sourceTree = "<group>"; };
+		3114991F18D93B9300906ED5 /* DocumentsLayout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DocumentsLayout.json; sourceTree = "<group>"; };
+		3114992418D93CC900906ED5 /* customView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customView.h; sourceTree = "<group>"; };
+		3114992518D93CC900906ED5 /* customView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customView.m; sourceTree = "<group>"; };
+		3114992718D93D2100906ED5 /* firstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = firstViewController.h; sourceTree = "<group>"; };
+		3114992818D93D2100906ED5 /* firstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = firstViewController.m; sourceTree = "<group>"; };
+		3114992918D93D2100906ED5 /* secondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = secondViewController.h; sourceTree = "<group>"; };
+		3114992A18D93D2100906ED5 /* secondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = secondViewController.m; sourceTree = "<group>"; };
+		31652E8818DA99C20001F0E2 /* HeaderForMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderForMacro.h; sourceTree = "<group>"; };
+		31A852F418DC38AE00890469 /* CountString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountString.h; sourceTree = "<group>"; };
+		31A852F518DC38AE00890469 /* CountString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountString.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3108154B18DADA4100C90513 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3108154F18DADA4200C90513 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		311498DE18D93AE700906ED5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3108150918DACF5D00C90513 /* QuartzCore.framework in Frameworks */,
 				311498E718D93AE700906ED5 /* CoreGraphics.framework in Frameworks */,
 				311498E918D93AE700906ED5 /* UIKit.framework in Frameworks */,
 				311498E518D93AE700906ED5 /* Foundation.framework in Frameworks */,
@@ -79,11 +151,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		310814F518DAC86400C90513 /* 产品素材 */ = {
+			isa = PBXGroup;
+			children = (
+				310814F618DAC86400C90513 /* 1.png */,
+				310814F718DAC86400C90513 /* 2.png */,
+				310814F818DAC86400C90513 /* 3.png */,
+				310814F918DAC86400C90513 /* 4.png */,
+				310814FA18DAC86400C90513 /* 5.png */,
+				310814FB18DAC86400C90513 /* 6.png */,
+				310814FC18DAC86400C90513 /* 7.png */,
+				310814FD18DAC86400C90513 /* 8.png */,
+				310814FE18DAC86400C90513 /* 9.png */,
+			);
+			path = "产品素材";
+			sourceTree = "<group>";
+		};
+		3108155018DADA4200C90513 /* shiyan */ = {
+			isa = PBXGroup;
+			children = (
+				3108155118DADA4200C90513 /* main.m */,
+				3108155518DADA4200C90513 /* shiyan.1 */,
+				3108155318DADA4200C90513 /* Supporting Files */,
+			);
+			path = shiyan;
+			sourceTree = "<group>";
+		};
+		3108155318DADA4200C90513 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3108155418DADA4200C90513 /* shiyan-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		311498D818D93AE700906ED5 = {
 			isa = PBXGroup;
 			children = (
 				311498EA18D93AE700906ED5 /* AutoLoadView */,
 				3114990918D93AE700906ED5 /* AutoLoadViewTests */,
+				3108155018DADA4200C90513 /* shiyan */,
 				311498E318D93AE700906ED5 /* Frameworks */,
 				311498E218D93AE700906ED5 /* Products */,
 			);
@@ -94,6 +201,7 @@
 			children = (
 				311498E118D93AE700906ED5 /* AutoLoadView.app */,
 				3114990218D93AE700906ED5 /* AutoLoadViewTests.xctest */,
+				3108154E18DADA4200C90513 /* shiyan */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,6 +209,7 @@
 		311498E318D93AE700906ED5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3108150818DACF5D00C90513 /* QuartzCore.framework */,
 				311498E418D93AE700906ED5 /* Foundation.framework */,
 				311498E618D93AE700906ED5 /* CoreGraphics.framework */,
 				311498E818D93AE700906ED5 /* UIKit.framework */,
@@ -112,12 +221,20 @@
 		311498EA18D93AE700906ED5 /* AutoLoadView */ = {
 			isa = PBXGroup;
 			children = (
+				3114992318D93BDF00906ED5 /* DataSourse */,
+				3114992218D93BB700906ED5 /* CustomFile */,
+				3114992118D93B9A00906ED5 /* AutoLoadFile */,
 				311498F318D93AE700906ED5 /* AppDelegate.h */,
 				311498F418D93AE700906ED5 /* AppDelegate.m */,
 				311498F618D93AE700906ED5 /* Main.storyboard */,
 				311498F918D93AE700906ED5 /* ViewController.h */,
 				311498FA18D93AE700906ED5 /* ViewController.m */,
+				3114992718D93D2100906ED5 /* firstViewController.h */,
+				3114992818D93D2100906ED5 /* firstViewController.m */,
+				3114992918D93D2100906ED5 /* secondViewController.h */,
+				3114992A18D93D2100906ED5 /* secondViewController.m */,
 				311498FC18D93AE700906ED5 /* Images.xcassets */,
+				310814F518DAC86400C90513 /* 产品素材 */,
 				311498EB18D93AE700906ED5 /* Supporting Files */,
 			);
 			path = AutoLoadView;
@@ -126,6 +243,7 @@
 		311498EB18D93AE700906ED5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3107773518D981AC00E7CEF9 /* 2.png */,
 				311498EC18D93AE700906ED5 /* AutoLoadView-Info.plist */,
 				311498ED18D93AE700906ED5 /* InfoPlist.strings */,
 				311498F018D93AE700906ED5 /* main.m */,
@@ -152,9 +270,57 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		3114992118D93B9A00906ED5 /* AutoLoadFile */ = {
+			isa = PBXGroup;
+			children = (
+				3114991918D93B1F00906ED5 /* wDynamicLayout.h */,
+				3114991A18D93B1F00906ED5 /* wDynamicLayout.m */,
+			);
+			name = AutoLoadFile;
+			sourceTree = "<group>";
+		};
+		3114992218D93BB700906ED5 /* CustomFile */ = {
+			isa = PBXGroup;
+			children = (
+				31A852F418DC38AE00890469 /* CountString.h */,
+				31A852F518DC38AE00890469 /* CountString.m */,
+				3114991C18D93B2F00906ED5 /* customButton.h */,
+				3114991D18D93B2F00906ED5 /* customButton.m */,
+				3114992418D93CC900906ED5 /* customView.h */,
+				3114992518D93CC900906ED5 /* customView.m */,
+			);
+			name = CustomFile;
+			sourceTree = "<group>";
+		};
+		3114992318D93BDF00906ED5 /* DataSourse */ = {
+			isa = PBXGroup;
+			children = (
+				31652E8818DA99C20001F0E2 /* HeaderForMacro.h */,
+				3114991F18D93B9300906ED5 /* DocumentsLayout.json */,
+			);
+			name = DataSourse;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3108154D18DADA4100C90513 /* shiyan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3108155718DADA4200C90513 /* Build configuration list for PBXNativeTarget "shiyan" */;
+			buildPhases = (
+				3108154A18DADA4100C90513 /* Sources */,
+				3108154B18DADA4100C90513 /* Frameworks */,
+				3108154C18DADA4100C90513 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = shiyan;
+			productName = shiyan;
+			productReference = 3108154E18DADA4200C90513 /* shiyan */;
+			productType = "com.apple.product-type.tool";
+		};
 		311498E018D93AE700906ED5 /* AutoLoadView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3114991318D93AE700906ED5 /* Build configuration list for PBXNativeTarget "AutoLoadView" */;
@@ -219,6 +385,7 @@
 			targets = (
 				311498E018D93AE700906ED5 /* AutoLoadView */,
 				3114990118D93AE700906ED5 /* AutoLoadViewTests */,
+				3108154D18DADA4100C90513 /* shiyan */,
 			);
 		};
 /* End PBXProject section */
@@ -228,7 +395,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3108150418DAC86400C90513 /* 6.png in Resources */,
+				3108150218DAC86400C90513 /* 4.png in Resources */,
+				3108150318DAC86400C90513 /* 5.png in Resources */,
+				3108150518DAC86400C90513 /* 7.png in Resources */,
+				3114992018D93B9300906ED5 /* DocumentsLayout.json in Resources */,
 				311498FD18D93AE700906ED5 /* Images.xcassets in Resources */,
+				3108150018DAC86400C90513 /* 2.png in Resources */,
+				3108150118DAC86400C90513 /* 3.png in Resources */,
+				3107773618D981AC00E7CEF9 /* 2.png in Resources */,
+				3108150718DAC86400C90513 /* 9.png in Resources */,
+				3108150618DAC86400C90513 /* 8.png in Resources */,
+				310814FF18DAC86400C90513 /* 1.png in Resources */,
 				311498EF18D93AE700906ED5 /* InfoPlist.strings in Resources */,
 				311498F818D93AE700906ED5 /* Main.storyboard in Resources */,
 			);
@@ -245,13 +423,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3108154A18DADA4100C90513 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3108155218DADA4200C90513 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		311498DD18D93AE700906ED5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				311498FB18D93AE700906ED5 /* ViewController.m in Sources */,
+				3114991E18D93B2F00906ED5 /* customButton.m in Sources */,
+				3114991B18D93B1F00906ED5 /* wDynamicLayout.m in Sources */,
+				3114992B18D93D2100906ED5 /* firstViewController.m in Sources */,
+				3114992C18D93D2100906ED5 /* secondViewController.m in Sources */,
+				3114992618D93CC900906ED5 /* customView.m in Sources */,
 				311498F518D93AE700906ED5 /* AppDelegate.m in Sources */,
 				311498F118D93AE700906ED5 /* main.m in Sources */,
+				31A852F618DC38AE00890469 /* CountString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +493,35 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3108155818DADA4200C90513 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "shiyan/shiyan-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3108155918DADA4200C90513 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "shiyan/shiyan-Prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		3114991118D93AE700906ED5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -440,6 +661,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3108155718DADA4200C90513 /* Build configuration list for PBXNativeTarget "shiyan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3108155818DADA4200C90513 /* Debug */,
+				3108155918DADA4200C90513 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		311498DC18D93AE700906ED5 /* Build configuration list for PBXProject "AutoLoadView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -456,6 +686,7 @@
 				3114991518D93AE700906ED5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3114991618D93AE700906ED5 /* Build configuration list for PBXNativeTarget "AutoLoadViewTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +695,7 @@
 				3114991818D93AE700906ED5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
