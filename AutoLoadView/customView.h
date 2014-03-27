@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void (^Myblock) (void);
+@class customView;
+typedef void (^Myblock) (customView *);
 @interface customView : UIView
-@property(nonatomic,copy )Myblock myblock;
+@property(nonatomic,copy )Myblock customViewBlock;
 
 
 -(void)setimageWithView:(Myblock) block;

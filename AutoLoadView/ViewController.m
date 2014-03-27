@@ -14,6 +14,9 @@
 #import "secondViewController.h"
 
 
+#define BackName1 @"4.png"
+#define BackName2 @"3.png"
+
 @interface ViewController ()
 
 @end
@@ -23,7 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     wDynamicLayout *dynamicLayout = [[wDynamicLayout alloc]init];
     NSString *lstring = [[NSBundle mainBundle] resourcePath];
     NSString *path = [lstring stringByAppendingPathComponent:@"DocumentsLayout.json"];
@@ -40,7 +42,7 @@
     NSLog(@"%f",self.view.bounds.size.height);
     [self.lScrollView setBackgroundColor:[UIColor purpleColor]];
     int rows = [[lDictionary objectForKey:@"rowsOfType"] intValue];//纪录json描绘的有多少行
-    for (int i= 0; i<rows-2; i++) {
+    for (int i= 0; i<rows; i++) {
         NSString *keyOfGroupItems = [NSString stringWithFormat:@"itemsOfGroup_%d",i];
         NSDictionary *lDic = [lDictionary objectForKey:keyOfGroupItems];
         [dynamicLayout loadItemsForGroup:lDic AndBaseView:self.lScrollView];
@@ -49,21 +51,20 @@
     
     NSDictionary *ldic = [dynamicLayout getItemsOfGroup:lDictionary];//直接调用解析的json文件的第一个字典
     NSLog(@"***************%@",ldic);
-    dynamicLayout.items = (NSMutableDictionary *)ldic;
-    NSLog(@"%@",dynamicLayout.items);
+//    dynamicLayout.items = (NSMutableDictionary *)ldic;
+//    NSLog(@"%@",dynamicLayout.items);
+    [self achieveHandle:ldic];
     
-    
-    customView *lCustomView = [[customView alloc]initWithFrame:CGRectMake(80, 400, 160, 100)];
-    lCustomView.backgroundColor = [UIColor whiteColor];
-    [lCustomView setimageWithView:^(void){
+   customView *lCustomView = [[customView alloc]initWithFrame:CGRectMake(80, 400, 160, 100)];
+    lCustomView.tag = 23;
+    lCustomView.backgroundColor = [UIColor blueColor];
+    [lCustomView setimageWithView:^(customView *cusView){
         UIImageView *imageView = [[UIImageView alloc]init];
-        imageView.frame = CGRectMake(80, 400, 160, 100);
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.frame = lCustomView.bounds;
         imageView.image = [UIImage imageNamed:@"2"];
-        [self.view addSubview:imageView];
+        [lCustomView addSubview:imageView];
     }];
-    
-    [self achieveHandle];
-    
     [self.view addSubview:lCustomView];
 
 }
@@ -72,9 +73,9 @@
     //do any additional setup
     
 }
-//获取控键
--(void)achieveHandle{
-    customButton *cButton = (customButton *)[self.view viewWithTag:1001];
+//获取控键并把响应事件的执行代码写入block中
+-(void)achieveHandle:(NSDictionary *)dictionary{
+  /*  customButton *cButton = (customButton *)[self.view viewWithTag:1001];
     __block customButton *cB = cButton;
     cButton.myblock = ^(customButton *button){
         //        [cB performSelector:@selector(buttonClick:)];
@@ -82,7 +83,7 @@
             firstViewController *lFirstVC = [[firstViewController alloc]init];
             [self presentViewController:lFirstVC animated:YES completion:nil];
         }
-        if (cB.numOfType == 2) {
+        if (cB.numOfType == 2)  {
             secondViewController *lSecondVC = [[secondViewController alloc]init];
             [self presentViewController:lSecondVC animated:YES completion:nil];
         }
@@ -92,9 +93,74 @@
             NSLog(@"%ld",(long)alertView.cancelButtonIndex);
             NSLog(@"%ld",(long)alertView.firstOtherButtonIndex);
         }
-        
+        if (cB.numOfType == 4)  {
+            //                    UIImage *image1 = [cB backgroundImageForState:UIControlStateNormal];
+            //                    UIImage *image2 = [UIImage imageNamed:@"3"];
+            //                    if ([[cB backgroundImageForState:UIControlStateNormal]isEqual:image1]) {
+            //                        [cB setBackgroundImage:image2 forState:UIControlStateNormal];
+            //                    }else{
+            //                        [cB setBackgroundImage:image2 forState:UIControlStateNormal];
+            //                    }
+            
+            NSLog(@"HELL");
+            
+        }
         NSLog(@"____________________");
-    };
+    };*/
+    int a=0;
+    int b=0;
+    NSArray *allOfValue = [dictionary allValues];
+    for (int i=0; i<allOfValue.count; i++) {
+        
+        if ([[allOfValue objectAtIndex:i]isEqualToString:@"button"]) {
+            a++;
+            NSString *key = [NSString stringWithFormat:@"100%d",a];
+            NSLog(@"key=%@",key);
+            customButton *cButton = (customButton *)[self.view viewWithTag:[key intValue]];
+            __block customButton *cB = cButton;
+            cButton.myblock = ^(customButton *button){
+                //        [cB performSelector:@selector(buttonClick:)];
+                if (cB.numOfType == 1) {
+                    firstViewController *lFirstVC = [[firstViewController alloc]init];
+                    [self presentViewController:lFirstVC animated:YES completion:nil];
+                }
+                if (cB.numOfType == 2)  {
+                    secondViewController *lSecondVC = [[secondViewController alloc]init];
+                    [self presentViewController:lSecondVC animated:YES completion:nil];
+                }
+                if (cB.numOfType == 3) {
+                    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"warning" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+                    [alertView show];
+                    NSLog(@"%ld",(long)alertView.cancelButtonIndex);
+                    NSLog(@"%ld",(long)alertView.firstOtherButtonIndex);
+                }
+                if (cB.numOfType == 4)  {
+                    UIImage *image1 = [UIImage imageNamed:BackName1];
+                    UIImage *image2 = [UIImage imageNamed:BackName2];
+                    if ([[cB backgroundImageForState:UIControlStateNormal]isEqual:image2]) {
+                        [cB setBackgroundImage:image1 forState:UIControlStateNormal];
+                    }else{
+                        [cB setBackgroundImage:image2 forState:UIControlStateNormal];
+                    }
+                }
+                NSLog(@"____________________");
+            };
+
+        }
+        if ([[allOfValue objectAtIndex:i]isEqualToString:@"customView"]) {
+            b++;
+            NSString *key = [NSString stringWithFormat:@"400%d",b];
+            NSLog(@"key=%@",key);
+            customView *cView = (customView *)[self.view viewWithTag:[key intValue]];
+            __block customView *cV = cView;
+            cView.customViewBlock =^(customView *cusVIew){
+                [cV setBackgroundColor:[UIColor redColor]];
+                NSLog(@"yyyyyyyyyy");
+            };
+        }
+
+    }
+    
 }
 
 

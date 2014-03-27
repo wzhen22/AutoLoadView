@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HeaderForMacro.h"
+#import "CountString.h"
 
 @interface wDynamicLayout : NSObject
 @property(nonatomic,retain)NSMutableDictionary *items;

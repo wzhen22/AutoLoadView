@@ -20,15 +20,15 @@
 }
 
 -(void)setimageWithView:(Myblock)block{
-    self.myblock = block;
+    self.customViewBlock = block;
     
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-//    [self setimageWithView:_myblock];
-    _myblock();
     
-    NSLog(@"hello");
+    self.customViewBlock(self);
+    
+//    NSLog(@"hello");
 }
 
 /*
