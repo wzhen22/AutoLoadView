@@ -19,5 +19,7 @@
 -(id) viewOfItems:(NSDictionary *)array andTag:(NSInteger )num;
 -(NSDictionary *)getItemsOfGroup:(NSDictionary *)wDictionary;//获取每个控键的类型和tag值
 
+-(NSArray *)titleOfArrayOfTitleFormJSON:(NSDictionary *)dictionary;
+-(NSArray *)imageOfArrayOfTitleFormJSON:(NSDictionary *)dictionary;
 
 @end

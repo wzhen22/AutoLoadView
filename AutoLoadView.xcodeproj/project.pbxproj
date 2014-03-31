@@ -39,6 +39,7 @@
 		3114992618D93CC900906ED5 /* customView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114992518D93CC900906ED5 /* customView.m */; };
 		3114992B18D93D2100906ED5 /* firstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114992818D93D2100906ED5 /* firstViewController.m */; };
 		3114992C18D93D2100906ED5 /* secondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114992A18D93D2100906ED5 /* secondViewController.m */; };
+		3128D5C118E910BF00B239D4 /* CustomSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3128D5C018E910BF00B239D4 /* CustomSegmentControl.m */; };
 		31A852F618DC38AE00890469 /* CountString.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A852F518DC38AE00890469 /* CountString.m */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,8 @@
 		3114992818D93D2100906ED5 /* firstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = firstViewController.m; sourceTree = "<group>"; };
 		3114992918D93D2100906ED5 /* secondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = secondViewController.h; sourceTree = "<group>"; };
 		3114992A18D93D2100906ED5 /* secondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = secondViewController.m; sourceTree = "<group>"; };
+		3128D5BF18E910BF00B239D4 /* CustomSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegmentControl.h; sourceTree = "<group>"; };
+		3128D5C018E910BF00B239D4 /* CustomSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegmentControl.m; sourceTree = "<group>"; };
 		31652E8818DA99C20001F0E2 /* HeaderForMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderForMacro.h; sourceTree = "<group>"; };
 		31A852F418DC38AE00890469 /* CountString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountString.h; sourceTree = "<group>"; };
 		31A852F518DC38AE00890469 /* CountString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountString.m; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 				31A852F518DC38AE00890469 /* CountString.m */,
 				3114991C18D93B2F00906ED5 /* customButton.h */,
 				3114991D18D93B2F00906ED5 /* customButton.m */,
+				3128D5BF18E910BF00B239D4 /* CustomSegmentControl.h */,
+				3128D5C018E910BF00B239D4 /* CustomSegmentControl.m */,
 				3114992418D93CC900906ED5 /* customView.h */,
 				3114992518D93CC900906ED5 /* customView.m */,
 			);
@@ -409,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3128D5C118E910BF00B239D4 /* CustomSegmentControl.m in Sources */,
 				311498FB18D93AE700906ED5 /* ViewController.m in Sources */,
 				3114991E18D93B2F00906ED5 /* customButton.m in Sources */,
 				3114991B18D93B1F00906ED5 /* wDynamicLayout.m in Sources */,

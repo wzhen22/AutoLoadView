@@ -12,6 +12,7 @@
 #import "customView.h"
 #import "firstViewController.h"
 #import "secondViewController.h"
+#import "CustomSegmentControl.h"
 
 
 #define BackName1 @"4.png"
@@ -55,17 +56,17 @@
 //    NSLog(@"%@",dynamicLayout.items);
     [self achieveHandle:ldic];
     
-   customView *lCustomView = [[customView alloc]initWithFrame:CGRectMake(80, 400, 160, 100)];
-    lCustomView.tag = 23;
-    lCustomView.backgroundColor = [UIColor blueColor];
-    [lCustomView setimageWithView:^(customView *cusView){
-        UIImageView *imageView = [[UIImageView alloc]init];
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
-        imageView.frame = lCustomView.bounds;
-        imageView.image = [UIImage imageNamed:@"2"];
-        [lCustomView addSubview:imageView];
-    }];
-    [self.view addSubview:lCustomView];
+//   customView *lCustomView = [[customView alloc]initWithFrame:CGRectMake(80, 400, 160, 100)];
+//    lCustomView.tag = 23;
+//    lCustomView.backgroundColor = [UIColor blueColor];
+//    [lCustomView setimageWithView:^(customView *cusView){
+//        UIImageView *imageView = [[UIImageView alloc]init];
+//        imageView.contentMode = UIViewContentModeScaleAspectFit;
+//        imageView.frame = lCustomView.bounds;
+//        imageView.image = [UIImage imageNamed:@"2"];
+//        [lCustomView addSubview:imageView];
+//    }];
+//    [self.view addSubview:lCustomView];
 
 }
 
@@ -109,13 +110,14 @@
     };*/
     int a=0;
     int b=0;
+    int c=0;
     NSArray *allOfValue = [dictionary allValues];
     for (int i=0; i<allOfValue.count; i++) {
         
         if ([[allOfValue objectAtIndex:i]isEqualToString:@"button"]) {
             a++;
             NSString *key = [NSString stringWithFormat:@"100%d",a];
-            NSLog(@"key=%@",key);
+//            NSLog(@"key=%@",key);
             customButton *cButton = (customButton *)[self.view viewWithTag:[key intValue]];
             __block customButton *cB = cButton;
             cButton.myblock = ^(customButton *button){
@@ -150,22 +152,43 @@
         if ([[allOfValue objectAtIndex:i]isEqualToString:@"customView"]) {
             b++;
             NSString *key = [NSString stringWithFormat:@"400%d",b];
-            NSLog(@"key=%@",key);
+//            NSLog(@"key=%@",key);
             customView *cView = (customView *)[self.view viewWithTag:[key intValue]];
             __block customView *cV = cView;
             cView.customViewBlock =^(customView *cusVIew){
                 [cV setBackgroundColor:[UIColor redColor]];
-                NSLog(@"yyyyyyyyyy");
             };
         }
+        if ([[allOfValue objectAtIndex:i]isEqualToString:@"segment"]) {
+            c++;
+            NSString *key = [NSString stringWithFormat:@"500%d",c];
+            //            NSLog(@"key=%@",key);
+            CustomSegmentControl *cSView = (CustomSegmentControl *)[self.view viewWithTag:[key intValue]];
+            [cSView addTarget:self action:@selector(segmentClick:) forControlEvents:UIControlEventValueChanged];
+        }
+
 
     }
     
 }
 
+#pragma mark UIsegmentControl click
+
+-(void)segmentClick:(CustomSegmentControl *)sender{
+    if (sender.selectedSegmentIndex == 0 ) {
+        NSLog(@"hello one");
+    }
+    if (sender.selectedSegmentIndex == 1) {
+        NSLog(@"hello two");
+    }
+    if (sender.selectedSegmentIndex == 1) {
+        NSLog(@"hello three");
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
+//    NSString *sl = [[NSString alloc]init];
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
