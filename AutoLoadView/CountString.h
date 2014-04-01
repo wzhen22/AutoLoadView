@@ -10,7 +10,7 @@
 
 @interface CountString : NSObject
 //@property(nonatomic,retain)NSString* finallyString;
--(NSInteger)operatorString:(NSString *)string;
+-(CGFloat )operatorString:(NSString *)string;
 -(NSString *)getStatement:(NSString *)string;
 -(BOOL) judgeFirstNumber:(NSString *) string1;
 @end

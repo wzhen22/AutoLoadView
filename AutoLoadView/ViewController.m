@@ -42,13 +42,15 @@
     self.lScrollView.contentSize = CGSizeMake(400, 400);
     NSLog(@"%f",self.view.bounds.size.height);
     [self.lScrollView setBackgroundColor:[UIColor purpleColor]];
+    
+    
     int rows = [[lDictionary objectForKey:@"rowsOfType"] intValue];//纪录json描绘的有多少行
     for (int i= 0; i<rows; i++) {
         NSString *keyOfGroupItems = [NSString stringWithFormat:@"itemsOfGroup_%d",i];
         NSDictionary *lDic = [lDictionary objectForKey:keyOfGroupItems];
-        [dynamicLayout loadItemsForGroup:lDic AndBaseView:self.lScrollView];
+        [dynamicLayout loadItemsForGroup:lDic AndBaseView:self.view];
     }
-    [self.view addSubview:_lScrollView];
+//    [self.view addSubview:_lScrollView];
     
     NSDictionary *ldic = [dynamicLayout getItemsOfGroup:lDictionary];//直接调用解析的json文件的第一个字典
     NSLog(@"***************%@",ldic);
@@ -108,9 +110,11 @@
         }
         NSLog(@"____________________");
     };*/
-    int a=0;
-    int b=0;
-    int c=0;
+    int a=0;//记录button的事件个数
+    int b=0;//记录customview的事件个数
+    int c=0;//记录segment的事件个数
+    int d=0;//记录slider的事件个数
+    int e=0;//记录textfield被点击的事件触发
     NSArray *allOfValue = [dictionary allValues];
     for (int i=0; i<allOfValue.count; i++) {
         
@@ -166,6 +170,25 @@
             CustomSegmentControl *cSView = (CustomSegmentControl *)[self.view viewWithTag:[key intValue]];
             [cSView addTarget:self action:@selector(segmentClick:) forControlEvents:UIControlEventValueChanged];
         }
+        if ([[allOfValue objectAtIndex:i]isEqualToString:@"slider"]) {
+            d++;
+            NSString *key = [NSString stringWithFormat:@"600%d",d];
+            //            NSLog(@"key=%@",key);
+            UISlider *sliderView = (UISlider *)[self.view viewWithTag:[key intValue]];
+            UIImage *image = [UIImage imageNamed:@"4"];
+            [sliderView setThumbImage:image forState:UIControlStateNormal];
+            [sliderView addTarget:self action:@selector(sliderClick:) forControlEvents:UIControlEventValueChanged];
+        }
+        if ([[allOfValue objectAtIndex:i]isEqualToString:@"textField"]) {
+            e++;
+            NSString *key = [NSString stringWithFormat:@"300%d",e];
+//            NSLog(@"key=%@",key);
+            UITextField *textField = (UITextField *) [self.view viewWithTag:[key intValue]];
+            textField.keyboardType = UIKeyboardTypeWebSearch;
+            textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+            textField.borderStyle = UITextBorderStyleRoundedRect;
+            [textField addTarget:self action:@selector(textFieldClick:) forControlEvents:UIControlEventEditingDidEndOnExit];
+        }
 
 
     }
@@ -174,6 +197,10 @@
 
 #pragma mark UIsegmentControl click
 
+-(void)sliderClick:(UISlider *)sender{
+    NSLog(@"sender value : %.2f",sender.value);
+}
+#pragma mark UISlider  click
 -(void)segmentClick:(CustomSegmentControl *)sender{
     if (sender.selectedSegmentIndex == 0 ) {
         NSLog(@"hello one");
@@ -184,6 +211,11 @@
     if (sender.selectedSegmentIndex == 1) {
         NSLog(@"hello three");
     }
+}
+#pragma mark UITextField click
+-(void)textFieldClick:(UITextField *)sender{
+    [sender resignFirstResponder];
+    NSLog(@"textField resignFirstResponder");
 }
 
 - (void)didReceiveMemoryWarning

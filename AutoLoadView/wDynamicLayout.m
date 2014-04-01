@@ -19,7 +19,7 @@
 -(void)loadItemsForGroup:(NSDictionary *)dictionary AndBaseView:(id)baseView{
     CountString *lCount = [[CountString alloc]init];
     
-    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment"];//用于判断接受控键的类型
+    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider"];//用于判断接受控键的类型
     NSDictionary *lDictionary = dictionary;//通过json文件解析出来的字典用于动态布局
     NSInteger numOfitems;               //纪录需要布局的控键的个数
     numOfitems = [lDictionary allKeys].count;
@@ -115,6 +115,7 @@
                         CGFloat RGBblue = [lCount operatorString:blueString];
                         CGFloat RGBalpha = [[AttributeDic objectForKey:@"TkeyColor_alpha"] floatValue];
                         lTextField.backgroundColor = [UIColor colorWithRed:RGBred green:RGBgreen blue:RGBblue alpha:RGBalpha];
+                        lTextField.tag = [[AttributeDic objectForKey:@"TkeyOfTag"] intValue];
 //                        [lTextField addTarget:self action:@selector(textClick) forControlEvents:UIControlEventEditingDidEndOnExit];
                         [baseView addSubview:lTextField];
                         
@@ -158,9 +159,9 @@
                             items = [self titleOfArrayOfTitleFormJSON:dictionary];
 
                         }
-                        NSLog(@"%@",items);
+//                        NSLog(@"%@",items);
                         CustomSegmentControl *lsegment = [[CustomSegmentControl alloc]initWithItems:items];
-                        //设置lCustomView的frame值
+                        //设置lsegment的frame值
                         NSString *xString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_x"]];
                         CGFloat rect_x =[lCount operatorString:xString];
                         NSString *yString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_y"]];
@@ -170,7 +171,7 @@
                         NSString *hString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_height"]];
                         CGFloat rect_height =[lCount operatorString:hString];
                         lsegment.frame = CGRectMake(rect_x,rect_y,rect_width,rect_height);
-                        //设置lCustomView的背景颜色
+                        //设置lsegment的背景颜色
                         NSString *redString = [AttributeDic objectForKey:@"SkeyColorRGB_red"];
                         CGFloat RGBred = [lCount operatorString:redString];
                         NSString *greenString = [AttributeDic objectForKey:@"SkeyColorRGB_green"];
@@ -181,6 +182,52 @@
                         lsegment.backgroundColor = [UIColor colorWithRed:RGBred green:RGBgreen blue:RGBblue alpha:RGBalpha];
                         lsegment.tag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
                         [baseView addSubview:lsegment];
+                        break;
+                    }
+                    case 5:{
+                        UISlider *lSlider = [[UISlider alloc]init];
+                        //设置lSlider的frame值
+                        NSString *xString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_x"]];
+                        CGFloat rect_x =[lCount operatorString:xString];
+                        NSString *yString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_y"]];
+                        CGFloat rect_y =[lCount operatorString:yString];
+                        NSString *wString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_width"]];
+                        CGFloat rect_width =[lCount operatorString:wString];
+                        NSString *hString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_height"]];
+                        CGFloat rect_height =[lCount operatorString:hString];
+                        lSlider.frame = CGRectMake(rect_x,rect_y,rect_width,rect_height);
+                        //设置lSlider的背景颜色
+                        NSString *redString = [AttributeDic objectForKey:@"SkeyColorRGB_red"];
+                        CGFloat RGBred = [lCount operatorString:redString];
+                        NSString *greenString = [AttributeDic objectForKey:@"SkeyColorRGB_green"];
+                        CGFloat RGBgreen = [lCount operatorString:greenString];
+                        NSString *blueString = [AttributeDic objectForKey:@"SkeyColorRGB_blue"];
+                        CGFloat RGBblue = [lCount operatorString:blueString];
+                        CGFloat RGBalpha = [[AttributeDic objectForKey:@"SkeyColor_alpha"] floatValue];
+                        lSlider.backgroundColor = [UIColor colorWithRed:RGBred green:RGBgreen blue:RGBblue alpha:RGBalpha];
+                        //设置lSlider的tag值
+                        lSlider.tag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
+                        //设置lSlider的最小值
+                        lSlider.minimumValue = [[AttributeDic objectForKey:@"SkeyMiniValue"] floatValue];
+                        //设置lSlider的最大值
+                        lSlider.maximumValue = [[AttributeDic objectForKey:@"SkeyMaxiValue"] floatValue];
+                        //设置lSlider的当前值
+                        lSlider.value = [[AttributeDic objectForKey:@"SkeyValue"] floatValue];
+                        //设置lSlider两端或则任意一段是否添加图片
+                        NSDictionary *dictionary = [AttributeDic objectForKey:@"SkeyItems"];
+                        if ([[AttributeDic objectForKey:@"SkeyIsPicture"] intValue]) {
+                            for (int i = 0; i<[dictionary.allKeys count]; i++) {
+                                if ([[dictionary.allKeys objectAtIndex:i]isEqualToString:@"minimumValueInage"]) {
+                                    NSString *nameImage = [dictionary objectForKey:@"minimumValueInage"];
+                                    lSlider.minimumValueImage = [UIImage imageNamed:nameImage];
+                                }
+                                if ([[dictionary.allKeys objectAtIndex:i]isEqualToString:@"maximumValueImage"]) {
+                                    NSString *nameImage = [dictionary objectForKey:@"maximumValueImage"];
+                                    lSlider.maximumValueImage = [UIImage imageNamed:nameImage];
+                                }
+                            }
+                                                   }
+                        [baseView addSubview:lSlider];
                         break;
                     }
 
@@ -207,7 +254,7 @@
 
 -(NSDictionary *)getItemsOfGroup:(NSDictionary *)wDictionary{
     
-    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment"];//用于判断接受控键的类型
+    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider"];//用于判断接受控键的类型
     NSMutableDictionary *lMdic = [[NSMutableDictionary alloc]init];
     NSInteger rows = [[wDictionary objectForKey:@"rowsOfType"] intValue];//纪录json描绘的有多少行
     NSInteger numOfitems;//纪录每一行需要布局的控键的个数
@@ -278,6 +325,12 @@
                             break;
                         }
                         case 4:{
+                            NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
+                            NSInteger numOfTag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
+                            [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
+                            break;
+                        }
+                        case 5:{
                             NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
                             NSInteger numOfTag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
                             [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];

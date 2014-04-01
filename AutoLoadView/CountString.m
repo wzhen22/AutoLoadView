@@ -11,7 +11,7 @@
 @implementation CountString
 
 //一个带有加减乘除的字符串转为运算结果的方法
--(NSInteger )operatorString:(NSString *)string{
+-(CGFloat )operatorString:(NSString *)string{
     NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@"+-*/"];
     NSMutableArray *numArrayOfString = (NSMutableArray *)[string componentsSeparatedByCharactersInSet:characterSet];
     
