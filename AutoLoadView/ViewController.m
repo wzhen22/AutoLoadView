@@ -115,6 +115,7 @@
     int c=0;//记录segment的事件个数
     int d=0;//记录slider的事件个数
     int e=0;//记录textfield被点击的事件触发
+    int f=0;//记录pageControl被点击的事件触发
     NSArray *allOfValue = [dictionary allValues];
     for (int i=0; i<allOfValue.count; i++) {
         
@@ -189,6 +190,12 @@
             textField.borderStyle = UITextBorderStyleRoundedRect;
             [textField addTarget:self action:@selector(textFieldClick:) forControlEvents:UIControlEventEditingDidEndOnExit];
         }
+        if ([[allOfValue objectAtIndex:i]isEqualToString:@"pageControl"]) {
+            f++;
+            NSString *key = [NSString stringWithFormat:@"700%d",f];
+            UISlider *sliderView = (UISlider *)[self.view viewWithTag:[key intValue]];
+            [sliderView addTarget:self action:@selector(pageControlClick:) forControlEvents:UIControlEventTouchUpInside];
+        }
 
 
     }
@@ -211,6 +218,10 @@
     if (sender.selectedSegmentIndex == 1) {
         NSLog(@"hello three");
     }
+}
+#pragma mark UIPageControl click
+-(void)pageControlClick:(UIPageControl *)sender{
+    NSLog(@"sender.currentPage : %ld",(long)sender.currentPage);
 }
 #pragma mark UITextField click
 -(void)textFieldClick:(UITextField *)sender{

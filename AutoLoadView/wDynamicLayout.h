@@ -22,4 +22,8 @@
 -(NSArray *)titleOfArrayOfTitleFormJSON:(NSDictionary *)dictionary;
 -(NSArray *)imageOfArrayOfTitleFormJSON:(NSDictionary *)dictionary;
 
+-(UIColor *)colorFormJSONnum:(NSInteger)num;
+
+-(NSTextAlignment) acheiveTextAlignmentFromJSONnum:(NSInteger)num;
+
 @end

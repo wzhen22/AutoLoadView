@@ -19,7 +19,7 @@
 -(void)loadItemsForGroup:(NSDictionary *)dictionary AndBaseView:(id)baseView{
     CountString *lCount = [[CountString alloc]init];
     
-    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider"];//用于判断接受控键的类型
+    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl"];//用于判断接受控键的类型
     NSDictionary *lDictionary = dictionary;//通过json文件解析出来的字典用于动态布局
     NSInteger numOfitems;               //纪录需要布局的控键的个数
     numOfitems = [lDictionary allKeys].count;
@@ -64,7 +64,7 @@
                         lButton.tag = [[AttributeDic objectForKey:@"BkeyOfTag"] intValue];//设置控键的tag值
                         [baseView addSubview:lButton];
                         break;
-                    }
+                    }//加载customButton
                     case 1:{
                         UILabel *lLabel = [[UILabel alloc]init];
                         //设置控键的frame值
@@ -93,7 +93,7 @@
                         [baseView addSubview:lLabel];
                         
                         break;
-                    }
+                    }//加载UILabel
                     case 2:{
                         UITextField *lTextField = [[UITextField alloc]init];
                         //设置textfield的frame值
@@ -116,11 +116,23 @@
                         CGFloat RGBalpha = [[AttributeDic objectForKey:@"TkeyColor_alpha"] floatValue];
                         lTextField.backgroundColor = [UIColor colorWithRed:RGBred green:RGBgreen blue:RGBblue alpha:RGBalpha];
                         lTextField.tag = [[AttributeDic objectForKey:@"TkeyOfTag"] intValue];
-//                        [lTextField addTarget:self action:@selector(textClick) forControlEvents:UIControlEventEditingDidEndOnExit];
-                        [baseView addSubview:lTextField];
+                        //设置输入的字体颜色
+                        NSInteger num = [[AttributeDic objectForKey:@"TkeyTextColor"] intValue];
+                        UIColor *currentColor = [self colorFormJSONnum:num];
+                        lTextField.textColor = currentColor;
+                        //设置文本框的字体、字体大小和背景提示字段
+                        NSString *Fname = [AttributeDic objectForKey:@"TkeyFont"];
+                        NSInteger Fsize = [[AttributeDic objectForKey:@"TkeyFontSize"] intValue];
+                        lTextField.font = [UIFont fontWithName:Fname size:Fsize];
+                        NSString *Pstring = [AttributeDic objectForKey:@"TkeyPlaceholder"];
+                        lTextField.placeholder =Pstring;
                         
+                        NSInteger tNum = [[AttributeDic objectForKey:@"TkeyAlignment"] intValue];
+                        NSTextAlignment textA= [self acheiveTextAlignmentFromJSONnum:tNum];
+                        [baseView addSubview:lTextField];
+                        lTextField.textAlignment = textA;
                         break;
-                    }
+                    }//加载UITextField
                     case 3:{
                         customView *lCustomView = [[customView alloc]init];
                         //设置lCustomView的frame值
@@ -148,7 +160,7 @@
                         [self loadItemsForGroup:subDictionay AndBaseView:lCustomView];
                         [baseView addSubview:lCustomView];
                         break;
-                    }
+                    }//加载customView
                     case 4:{
                         //判断初始化的标题是不是图片
                         NSDictionary *dictionary = [AttributeDic objectForKey:@"SkeyItems"];
@@ -183,7 +195,7 @@
                         lsegment.tag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
                         [baseView addSubview:lsegment];
                         break;
-                    }
+                    }//加载UISegment自定义的
                     case 5:{
                         UISlider *lSlider = [[UISlider alloc]init];
                         //设置lSlider的frame值
@@ -229,8 +241,40 @@
                                                    }
                         [baseView addSubview:lSlider];
                         break;
-                    }
+                    }//加载UISlider
+                    case 6:{
+                       UIPageControl *lPageControl = [[UIPageControl alloc]init];
+                        //设置控键的frame值
+                        NSString *xString = [lCount getStatement:[AttributeDic objectForKey:@"PkeyCGRect_x"]];
+                        CGFloat rect_x =[lCount operatorString:xString];
+                        NSString *yString = [lCount getStatement:[AttributeDic objectForKey:@"PkeyCGRect_y"]];
+                        CGFloat rect_y =[lCount operatorString:yString];
+                        NSString *wString = [lCount getStatement:[AttributeDic objectForKey:@"PkeyCGRect_width"]];
+                        CGFloat rect_width =[lCount operatorString:wString];
+                        NSString *hString = [lCount getStatement:[AttributeDic objectForKey:@"PkeyCGRect_height"]];
+                        CGFloat rect_height =[lCount operatorString:hString];
+                        lPageControl.frame = CGRectMake(rect_x,rect_y,rect_width,rect_height);
+                        //设置控键的透明度，page数和当前在那一张page
+                        lPageControl.alpha = [[AttributeDic objectForKey:@"PkeyAlpha"] floatValue];
+                        lPageControl.numberOfPages = [[AttributeDic objectForKey:@"PkeyNumOfPages"] intValue];
+                        lPageControl.currentPage = [[AttributeDic objectForKey:@"PkeyCurrentPage"] intValue];
+                        //设置lpageControl的指示器颜色和背景颜色
+                        NSInteger indicatorTC = [[AttributeDic objectForKey:@"PkeyITColor"] intValue];
+                        UIColor *color1 = [self colorFormJSONnum:indicatorTC];
+                        lPageControl.pageIndicatorTintColor = color1;
+                        NSInteger cIndicatorTC = [[AttributeDic objectForKey:@"PkeyCurrentITColor"] intValue];
+                        UIColor *color2 = [self colorFormJSONnum:cIndicatorTC];
+                        lPageControl.currentPageIndicatorTintColor = color2;
 
+                        NSInteger backCnum = [[AttributeDic objectForKey:@"PkeyBackColor"] intValue];
+                        UIColor *color3 = [self colorFormJSONnum:backCnum];
+                        lPageControl.backgroundColor = color3;
+                        //设置lpageControl的tag值
+                         lPageControl.tag = [[AttributeDic objectForKey:@"PkeyOfTag"] intValue];
+                        [baseView addSubview:lPageControl];
+                        
+                        break;
+                    }//加载UIPageControl
                         
                     default:
                         break;
@@ -254,7 +298,7 @@
 
 -(NSDictionary *)getItemsOfGroup:(NSDictionary *)wDictionary{
     
-    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider"];//用于判断接受控键的类型
+    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl"];//用于判断接受控键的类型
     NSMutableDictionary *lMdic = [[NSMutableDictionary alloc]init];
     NSInteger rows = [[wDictionary objectForKey:@"rowsOfType"] intValue];//纪录json描绘的有多少行
     NSInteger numOfitems;//纪录每一行需要布局的控键的个数
@@ -336,6 +380,12 @@
                             [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
                             break;
                         }
+                        case 6:{
+                            NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
+                            NSInteger numOfTag = [[AttributeDic objectForKey:@"PkeyOfTag"] intValue];
+                            [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
+                            break;
+                        }
 
                         default:
                             break;
@@ -373,6 +423,84 @@
     return jArray;
 }
 
+
+-(UIColor *)colorFormJSONnum:(NSInteger)num{
+    UIColor *Rcolor;
+    switch (num) {
+        case 0:
+            Rcolor  = [UIColor blackColor];
+            break;
+        case 1:
+            Rcolor  = [UIColor darkGrayColor];
+            break;
+        case 2:
+            Rcolor  = [UIColor lightGrayColor];
+            break;
+        case 3:
+            Rcolor  = [UIColor whiteColor];
+            break;
+        case 4:
+            Rcolor  = [UIColor grayColor];
+            break;
+        case 5:
+            Rcolor  = [UIColor redColor];
+            break;
+        case 6:
+            Rcolor  = [UIColor greenColor];
+            break;
+        case 7:
+            Rcolor  = [UIColor blueColor];
+            break;
+        case 8:
+            Rcolor  = [UIColor cyanColor];
+            break;
+        case 9:
+            Rcolor  = [UIColor yellowColor];
+            break;
+        case 10:
+            Rcolor  = [UIColor magentaColor];
+            break;
+        case 11:
+            Rcolor  = [UIColor orangeColor];
+            break;
+        case 12:
+            Rcolor  = [UIColor purpleColor];
+            break;
+        case 13:
+            Rcolor  = [UIColor brownColor];
+            break;
+        case 14:
+            Rcolor  = [UIColor clearColor];
+            break;
+
+        default:
+        Rcolor  = [UIColor clearColor];
+            break;
+    }
+    return Rcolor;
+}
+
+-(NSTextAlignment) acheiveTextAlignmentFromJSONnum:(NSInteger)num{
+    NSTextAlignment textAlignment;
+    switch (num) {
+        case 1:
+        textAlignment = NSTextAlignmentCenter;
+        break;
+        case 2:
+        textAlignment = NSTextAlignmentRight;
+        break;
+        case 3:
+        textAlignment = NSTextAlignmentJustified;
+        break;
+        case 4:
+        textAlignment = NSTextAlignmentNatural;
+        break;
+        default:
+        textAlignment = NSTextAlignmentLeft;
+        break;
+    }
+    return textAlignment;
+}
 
 -(void)textClick{
     //do any additional setup
