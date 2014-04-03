@@ -10,7 +10,7 @@
 #import "customButton.h"
 #import "customView.h"
 #import "CustomSegmentControl.h"
-
+#import "CustomScrollView.h"
 
 @implementation wDynamicLayout{
     
@@ -19,7 +19,7 @@
 -(void)loadItemsForGroup:(NSDictionary *)dictionary AndBaseView:(id)baseView{
     CountString *lCount = [[CountString alloc]init];
     
-    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl"];//用于判断接受控键的类型
+    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView"];//用于判断接受控键的类型
     NSDictionary *lDictionary = dictionary;//通过json文件解析出来的字典用于动态布局
     NSInteger numOfitems;               //纪录需要布局的控键的个数
     numOfitems = [lDictionary allKeys].count;
@@ -118,7 +118,7 @@
                         lTextField.tag = [[AttributeDic objectForKey:@"TkeyOfTag"] intValue];
                         //设置输入的字体颜色
                         NSInteger num = [[AttributeDic objectForKey:@"TkeyTextColor"] intValue];
-                        UIColor *currentColor = [self colorFormJSONnum:num];
+                        UIColor *currentColor = [self colorFromJSONnum:num];
                         lTextField.textColor = currentColor;
                         //设置文本框的字体、字体大小和背景提示字段
                         NSString *Fname = [AttributeDic objectForKey:@"TkeyFont"];
@@ -260,14 +260,14 @@
                         lPageControl.currentPage = [[AttributeDic objectForKey:@"PkeyCurrentPage"] intValue];
                         //设置lpageControl的指示器颜色和背景颜色
                         NSInteger indicatorTC = [[AttributeDic objectForKey:@"PkeyITColor"] intValue];
-                        UIColor *color1 = [self colorFormJSONnum:indicatorTC];
+                        UIColor *color1 = [self colorFromJSONnum:indicatorTC];
                         lPageControl.pageIndicatorTintColor = color1;
                         NSInteger cIndicatorTC = [[AttributeDic objectForKey:@"PkeyCurrentITColor"] intValue];
-                        UIColor *color2 = [self colorFormJSONnum:cIndicatorTC];
+                        UIColor *color2 = [self colorFromJSONnum:cIndicatorTC];
                         lPageControl.currentPageIndicatorTintColor = color2;
 
                         NSInteger backCnum = [[AttributeDic objectForKey:@"PkeyBackColor"] intValue];
-                        UIColor *color3 = [self colorFormJSONnum:backCnum];
+                        UIColor *color3 = [self colorFromJSONnum:backCnum];
                         lPageControl.backgroundColor = color3;
                         //设置lpageControl的tag值
                          lPageControl.tag = [[AttributeDic objectForKey:@"PkeyOfTag"] intValue];
@@ -275,7 +275,48 @@
                         
                         break;
                     }//加载UIPageControl
-                        
+                    case 7:{
+                        CustomScrollView *lscrollView = [[CustomScrollView alloc]init];
+                        //设置lscrollView的frame值
+                        NSString *xString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_x"]];
+                        CGFloat rect_x =[lCount operatorString:xString];
+                        NSString *yString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_y"]];
+                        CGFloat rect_y =[lCount operatorString:yString];
+                        NSString *wString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_width"]];
+                        CGFloat rect_width =[lCount operatorString:wString];
+                        NSString *hString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_height"]];
+                        CGFloat rect_height =[lCount operatorString:hString];                        lscrollView.frame = CGRectMake(rect_x,rect_y,rect_width,rect_height);
+                        //设置lscrollView的背景颜色
+                        NSString *redString = [AttributeDic objectForKey:@"SkeyColorRGB_red"];
+                        CGFloat RGBred = [lCount operatorString:redString];
+                        NSString *greenString = [AttributeDic objectForKey:@"SkeyColorRGB_green"];
+                        CGFloat RGBgreen = [lCount operatorString:greenString];
+                        NSString *blueString = [AttributeDic objectForKey:@"SkeyColorRGB_blue"];
+                        CGFloat RGBblue = [lCount operatorString:blueString];
+                        CGFloat RGBalpha = [[AttributeDic objectForKey:@"SkeyColor_alpha"] floatValue];
+                        lscrollView.backgroundColor = [UIColor colorWithRed:RGBred green:RGBgreen blue:RGBblue alpha:RGBalpha];
+                        lscrollView.tag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
+                        //加载嵌套的控键
+                        NSDictionary *subDictionay = [AttributeDic objectForKey:@"subItems"];
+                        [self loadItemsForGroup:subDictionay AndBaseView:lscrollView];
+                        int t=0;
+                        for (int i = 0; i<[subDictionay.allKeys count]; i++) {
+                            if ([[subDictionay.allKeys objectAtIndex:i]hasPrefix:@"item_"]) {
+                                t++;
+                            }
+                        }
+                        lscrollView.numOfViews = t;//记录子控键个数
+                        NSString *bstring = [AttributeDic objectForKey:@"SkeyBounces"];
+                        lscrollView.bounces = [self boolFromJSON:[bstring integerValue]];
+                        //设置滑动控制器的容量
+                        CGFloat size_w = [[subDictionay objectForKey:@"subView_width"] floatValue];
+                        CGFloat size_h = [[subDictionay objectForKey:@"subView_height"] floatValue];
+                        NSInteger num1 = [[subDictionay objectForKey:@"everyRow_num"] integerValue];
+                        lscrollView.contentSize = CGSizeMake(size_w *num1, size_h *(lscrollView.numOfViews / num1));
+                        [baseView addSubview:lscrollView];
+                        break;
+                    }//加载scrollView
+    
                     default:
                         break;
                 }
@@ -298,7 +339,7 @@
 
 -(NSDictionary *)getItemsOfGroup:(NSDictionary *)wDictionary{
     
-    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl"];//用于判断接受控键的类型
+    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView"];//用于判断接受控键的类型
     NSMutableDictionary *lMdic = [[NSMutableDictionary alloc]init];
     NSInteger rows = [[wDictionary objectForKey:@"rowsOfType"] intValue];//纪录json描绘的有多少行
     NSInteger numOfitems;//纪录每一行需要布局的控键的个数
@@ -386,6 +427,12 @@
                             [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
                             break;
                         }
+                        case 7:{
+                            NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
+                            NSInteger numOfTag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
+                            [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
+                            break;
+                        }
 
                         default:
                             break;
@@ -423,8 +470,8 @@
     return jArray;
 }
 
-
--(UIColor *)colorFormJSONnum:(NSInteger)num{
+#pragma mark base method
+-(UIColor *)colorFromJSONnum:(NSInteger)num{
     UIColor *Rcolor;
     switch (num) {
         case 0:
@@ -502,6 +549,42 @@
     return textAlignment;
 }
 
+-(CGPoint) pointFromJSON:(NSDictionary *)dictionary{
+    CGPoint point;
+    CGFloat x = [[dictionary objectForKey:@"keyPoint_x"] floatValue];
+    CGFloat y = [[dictionary objectForKey:@"keyPoint_y"] floatValue];
+    point.x = x;
+    point.y = y;
+    return point;
+}
+
+-(CGSize )sizeFromJSON:(NSDictionary *)dictionary{
+    CGSize size;
+    CGFloat width = [[dictionary objectForKey:@"keySize_width"] floatValue];
+    CGFloat height = [[dictionary objectForKey:@"keySize_height"] floatValue];
+    size.width = width;
+    size.height = height;
+    return size;
+}
+
+-(CGRect )rectFromJSON:(NSDictionary *)dictionary{
+    CGRect rect;
+    NSDictionary  *dicForPoint = [dictionary objectForKey:@"keyPoint"];
+    NSDictionary *dicForSize = [dictionary objectForKey:@"keySize"];
+    rect.origin = [self pointFromJSON:dicForPoint];
+    rect.size = [self sizeFromJSON:dicForSize];
+    return rect;
+}
+
+-(BOOL) boolFromJSON:(NSInteger )integer{
+    BOOL isOK;
+    if (integer != 0) {
+        isOK = YES;
+    }else{
+        isOK  = NO;
+    }
+    return isOK;
+}
 -(void)textClick{
     //do any additional setup
     NSLog(@"text disappear!");

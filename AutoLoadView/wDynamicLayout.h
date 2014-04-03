@@ -22,8 +22,16 @@
 -(NSArray *)titleOfArrayOfTitleFormJSON:(NSDictionary *)dictionary;
 -(NSArray *)imageOfArrayOfTitleFormJSON:(NSDictionary *)dictionary;
 
--(UIColor *)colorFormJSONnum:(NSInteger)num;
+-(UIColor *)colorFromJSONnum:(NSInteger)num;//转换为基本颜色样式
 
--(NSTextAlignment) acheiveTextAlignmentFromJSONnum:(NSInteger)num;
+-(NSTextAlignment) acheiveTextAlignmentFromJSONnum:(NSInteger)num;//转换为支持的文字对齐方式
+
+-(CGPoint) pointFromJSON:(NSDictionary *)dictionary;//返回点坐标
+
+-(CGSize )sizeFromJSON:(NSDictionary *)dictionary;//返回size的宽和高
+
+-(CGRect )rectFromJSON:(NSDictionary *)dictionary;//返回一个rect值
+
+-(BOOL) boolFromJSON:(NSInteger )integer;
 
 @end
