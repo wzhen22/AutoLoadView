@@ -15,6 +15,9 @@
 @implementation wDynamicLayout{
     
 }
+//-(void)setTypeOfArray:(NSArray *)typeOfArray{
+//    self.typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView"];//用于判断接受控键的类型
+//}
 
 -(void)loadItemsForGroup:(NSDictionary *)dictionary AndBaseView:(id)baseView{
     CountString *lCount = [[CountString alloc]init];
@@ -299,19 +302,20 @@
                         //加载嵌套的控键
                         NSDictionary *subDictionay = [AttributeDic objectForKey:@"subItems"];
                         [self loadItemsForGroup:subDictionay AndBaseView:lscrollView];
-                        int t=0;
-                        for (int i = 0; i<[subDictionay.allKeys count]; i++) {
-                            if ([[subDictionay.allKeys objectAtIndex:i]hasPrefix:@"item_"]) {
-                                t++;
-                            }
-                        }
-                        lscrollView.numOfViews = t;//记录子控键个数
+                        lscrollView.numOfViews = [subDictionay.allKeys count];//记录子控键个数
+                        //设置lscrollView是否弹跳
                         NSString *bstring = [AttributeDic objectForKey:@"SkeyBounces"];
                         lscrollView.bounces = [self boolFromJSON:[bstring integerValue]];
+                        //设置lscrollView 水平和垂直方向是否显示指示器
+                        NSString *hstring = [AttributeDic objectForKey:@"SkeyShowsHSI"];
+                        NSString *vstring = [AttributeDic objectForKey:@"SkeyShowsVSI"];
+                        lscrollView.showsHorizontalScrollIndicator = [self boolFromJSON:[hstring integerValue]];
+                        lscrollView.showsVerticalScrollIndicator = [self boolFromJSON:[vstring integerValue]];
+                        
                         //设置滑动控制器的容量
-                        CGFloat size_w = [[subDictionay objectForKey:@"subView_width"] floatValue];
-                        CGFloat size_h = [[subDictionay objectForKey:@"subView_height"] floatValue];
-                        NSInteger num1 = [[subDictionay objectForKey:@"everyRow_num"] integerValue];
+                        CGFloat size_w = [[AttributeDic objectForKey:@"subView_width"] floatValue];
+                        CGFloat size_h = [[AttributeDic objectForKey:@"subView_height"] floatValue];
+                        NSInteger num1 = [[AttributeDic objectForKey:@"everyRow_num"] integerValue];
                         lscrollView.contentSize = CGSizeMake(size_w *num1, size_h *(lscrollView.numOfViews / num1));
                         [baseView addSubview:lscrollView];
                         break;
@@ -337,117 +341,96 @@
 //    items = lMdic;
 //}
 
+#pragma mark load view tag methord
+//根据json文件控制的又多少个布局块调用每块取tag值的方法
 -(NSDictionary *)getItemsOfGroup:(NSDictionary *)wDictionary{
-    
-    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView"];//用于判断接受控键的类型
     NSMutableDictionary *lMdic = [[NSMutableDictionary alloc]init];
     NSInteger rows = [[wDictionary objectForKey:@"rowsOfType"] intValue];//纪录json描绘的有多少行
-    NSInteger numOfitems;//纪录每一行需要布局的控键的个数
+
     for (int i= 0; i<rows; i++) {
         NSString *keyOfGroupItems = [NSString stringWithFormat:@"itemsOfGroup_%d",i];
         NSDictionary *lDic = [wDictionary objectForKey:keyOfGroupItems];
-        numOfitems = [lDic allKeys].count;
-        for (int i=0;  i<numOfitems;i++) {
-            NSString *lKeyString = [NSString stringWithFormat:@"item_%d",i];
-            NSDictionary *AttributeDic = [lDic objectForKey:lKeyString];
-            for (int j = 0; j<typeOfArray.count; j++) {
-                if ([[typeOfArray objectAtIndex:j]isEqualToString:[AttributeDic objectForKey:@"type"]]) {
-                    switch (j) {
-                        case 0:{
-                            NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
-                            NSInteger numOfTag = [[AttributeDic objectForKey:@"BkeyOfTag"] intValue];
-                            [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
-                            break;
-                        }
-                        case 1:{
-                            NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
-                            NSInteger numOfTag = [[AttributeDic objectForKey:@"LkeyOfTag"] intValue];
-                            [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
-                            break;
-                        }
-                        case 2:{
-                            NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
-                            NSInteger numOfTag = [[AttributeDic objectForKey:@"TkeyOfTag"] intValue];
-                            [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
-                            break;
-                        }
-                        case 3:{
-                            NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
-                            NSInteger numOfTag = [[AttributeDic objectForKey:@"CkeyOfTag"] intValue];
-                            [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
-                            //把子布局字典里面的tag值存入总的返回字典
-                            NSDictionary *subDic = [AttributeDic objectForKey:@"subItems"];//subItems与itemsOfGroup同级
-                            for (int t=0; t<[subDic allKeys].count; t++) {
-                                NSString *lKeyString = [NSString stringWithFormat:@"item_%d",t];
-                                NSDictionary *subItemOfDic = [subDic objectForKey:lKeyString];
-                                if ([[subItemOfDic objectForKey:@"type"]isEqualToString:@"button"]) {
-                                    NSString *lstr = [subItemOfDic objectForKey:@"type"];
-                                    NSInteger subItemTag = [[subItemOfDic objectForKey:@"BkeyOfTag"] intValue];
-                                    [lMdic setObject:lstr forKey:[NSString stringWithFormat:@"%ld",(long)subItemTag]];
-                                    continue;
-                                }
-                                if ([[subItemOfDic objectForKey:@"type"]isEqualToString:@"label"]) {
-                                    NSString *lstr = [subItemOfDic objectForKey:@"type"];
-                                    NSInteger subItemTag = [[subItemOfDic objectForKey:@"LkeyOfTag"] intValue];
-                                    [lMdic setObject:lstr forKey:[NSString stringWithFormat:@"%ld",(long)subItemTag]];
-                                    continue;
-                                }
-                                if ([[subItemOfDic objectForKey:@"type"]isEqualToString:@"textField"]) {
-                                    NSString *lstr = [subItemOfDic objectForKey:@"type"];
-                                    NSInteger subItemTag = [[subItemOfDic objectForKey:@"TkeyOfTag"] intValue];
-                                    [lMdic setObject:lstr forKey:[NSString stringWithFormat:@"%ld",(long)subItemTag]];
-                                    continue;
-                                }
-                                if ([[subItemOfDic objectForKey:@"type"]isEqualToString:@"customView"]) {
-                                    NSString *lstr = [subItemOfDic objectForKey:@"type"];
-                                    NSInteger subItemTag = [[subItemOfDic objectForKey:@"CkeyOfTag"] intValue];
-                                    [lMdic setObject:lstr forKey:[NSString stringWithFormat:@"%ld",(long)subItemTag]];
-                                    continue;
-                                }
-
-                            }
-                           
-                            break;
-                        }
-                        case 4:{
-                            NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
-                            NSInteger numOfTag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
-                            [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
-                            break;
-                        }
-                        case 5:{
-                            NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
-                            NSInteger numOfTag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
-                            [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
-                            break;
-                        }
-                        case 6:{
-                            NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
-                            NSInteger numOfTag = [[AttributeDic objectForKey:@"PkeyOfTag"] intValue];
-                            [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
-                            break;
-                        }
-                        case 7:{
-                            NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
-                            NSInteger numOfTag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
-                            [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
-                            break;
-                        }
-
-                        default:
-                            break;
-                    }
-                    break;
-                }
-            }
-            
-        }
-
+        [lMdic addEntriesFromDictionary:(NSMutableDictionary *)[self viewTagFromDictionary:lDic]];
     }
         return lMdic;
     SmartCellRelease(lMdic);
 }
-
+//每一块的控键类型在这里添加
+-(NSDictionary *)viewTagFromDictionary:(NSDictionary *)dictionary{
+    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView"];//用于判断接受控键的类型
+    NSMutableDictionary *lMdic = [[NSMutableDictionary alloc]init];
+    for (int i=0;  i<[dictionary.allKeys count];i++) {
+        NSString *lKeyString = [NSString stringWithFormat:@"item_%d",i];
+        NSDictionary *AttributeDic = [dictionary objectForKey:lKeyString];
+        for (int j = 0; j<typeOfArray.count; j++) {
+            if ([[typeOfArray objectAtIndex:j]isEqualToString:[AttributeDic objectForKey:@"type"]]) {
+                switch (j) {
+                    case 0:{
+                        NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
+                        NSInteger numOfTag = [[AttributeDic objectForKey:@"BkeyOfTag"] intValue];
+                        [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
+                        break;
+                    }
+                    case 1:{
+                        NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
+                        NSInteger numOfTag = [[AttributeDic objectForKey:@"LkeyOfTag"] intValue];
+                        [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
+                        break;
+                    }
+                    case 2:{
+                        NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
+                        NSInteger numOfTag = [[AttributeDic objectForKey:@"TkeyOfTag"] intValue];
+                        [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
+                        break;
+                    }
+                    case 3:{
+                        NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
+                        NSInteger numOfTag = [[AttributeDic objectForKey:@"CkeyOfTag"] intValue];
+                        [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
+                        //把子布局字典里面的tag值存入总的返回字典
+                        NSDictionary *subDic = [AttributeDic objectForKey:@"subItems"];//subItems与itemsOfGroup同级
+                        NSDictionary *subOneDic = [self viewTagFromDictionary:subDic];
+                        [lMdic addEntriesFromDictionary:subOneDic];
+                        break;
+                    }
+                    case 4:{
+                        NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
+                        NSInteger numOfTag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
+                        [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
+                        break;
+                    }
+                    case 5:{
+                        NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
+                        NSInteger numOfTag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
+                        [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
+                        break;
+                    }
+                    case 6:{
+                        NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
+                        NSInteger numOfTag = [[AttributeDic objectForKey:@"PkeyOfTag"] intValue];
+                        [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
+                        break;
+                    }
+                    case 7:{
+                        NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
+                        NSInteger numOfTag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
+                        [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
+                        //把子布局字典里面的tag值存入总的返回字典
+                        NSDictionary *subDic = [AttributeDic objectForKey:@"subItems"];//subItems与itemsOfGroup同级
+                        NSDictionary *subOneDic = [self viewTagFromDictionary:subDic];
+                        [lMdic addEntriesFromDictionary:subOneDic];
+                        break;
+                    }
+                        
+                    default:
+                        break;
+                }
+                break;
+            }
+        }
+    }
+    return lMdic;
+}
 -(id) viewOfItems:(NSDictionary *)array andTag:(NSInteger )num{
     return 0;
 }

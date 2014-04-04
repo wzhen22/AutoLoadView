@@ -12,6 +12,7 @@
 
 @interface wDynamicLayout : NSObject
 @property(nonatomic,retain)NSMutableDictionary *items;
+//@property(nonatomic,retain)NSArray *typeOfArray;
 //@property(nonatomic,assign) NSInteger numOfItems;
 
 
@@ -33,5 +34,7 @@
 -(CGRect )rectFromJSON:(NSDictionary *)dictionary;//返回一个rect值
 
 -(BOOL) boolFromJSON:(NSInteger )integer;
+
+-(NSDictionary *)viewTagFromDictionary:(NSDictionary *)dictionary;
 
 @end
