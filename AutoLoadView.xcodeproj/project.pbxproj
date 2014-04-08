@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3104E2A818F3F63E001F31C1 /* ControlMapFJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 3104E2A718F3F63E001F31C1 /* ControlMapFJ.m */; };
 		3107773618D981AC00E7CEF9 /* pic2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3107773518D981AC00E7CEF9 /* pic2.png */; };
 		310814FF18DAC86400C90513 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814F618DAC86400C90513 /* 1.png */; };
 		3108150018DAC86400C90513 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814F718DAC86400C90513 /* 2.png */; };
@@ -67,6 +68,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3104E2A618F3F63E001F31C1 /* ControlMapFJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlMapFJ.h; sourceTree = "<group>"; };
+		3104E2A718F3F63E001F31C1 /* ControlMapFJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlMapFJ.m; sourceTree = "<group>"; };
 		3107773518D981AC00E7CEF9 /* pic2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic2.png; sourceTree = "<group>"; };
 		310814F618DAC86400C90513 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		310814F718DAC86400C90513 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
@@ -256,6 +259,8 @@
 			children = (
 				3114991918D93B1F00906ED5 /* wDynamicLayout.h */,
 				3114991A18D93B1F00906ED5 /* wDynamicLayout.m */,
+				3104E2A618F3F63E001F31C1 /* ControlMapFJ.h */,
+				3104E2A718F3F63E001F31C1 /* ControlMapFJ.m */,
 			);
 			name = AutoLoadFile;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3104E2A818F3F63E001F31C1 /* ControlMapFJ.m in Sources */,
 				3128D5C118E910BF00B239D4 /* CustomSegmentControl.m in Sources */,
 				311498FB18D93AE700906ED5 /* ViewController.m in Sources */,
 				3114991E18D93B2F00906ED5 /* customButton.m in Sources */,

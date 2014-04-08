@@ -11,6 +11,7 @@
 #import "customView.h"
 #import "CustomSegmentControl.h"
 #import "CustomScrollView.h"
+#import "ControlMapFJ.h"
 
 @implementation wDynamicLayout{
     
@@ -66,6 +67,9 @@
                         lButton.numOfType = [[AttributeDic objectForKey:@"BkeyOfClick"] intValue];
                         lButton.tag = [[AttributeDic objectForKey:@"BkeyOfTag"] intValue];//设置控键的tag值
                         [baseView addSubview:lButton];
+                        
+                        ControlMapFJ *controlMF = [[ControlMapFJ alloc]initWithDictionary:AttributeDic];
+                        NSLog(@"controlMF========%@",controlMF);
                         break;
                     }//加载customButton
                     case 1:{
