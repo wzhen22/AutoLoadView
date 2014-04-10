@@ -42,6 +42,7 @@
 		3114992C18D93D2100906ED5 /* secondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114992A18D93D2100906ED5 /* secondViewController.m */; };
 		3128D5C118E910BF00B239D4 /* CustomSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3128D5C018E910BF00B239D4 /* CustomSegmentControl.m */; };
 		31435B0618ED560A00E26DA2 /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31435B0518ED560A00E26DA2 /* CustomScrollView.m */; };
+		315BE03118F53AE0002F1D18 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 315BE03018F53AE0002F1D18 /* CustomSwitch.m */; };
 		31A852F618DC38AE00890469 /* CountString.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A852F518DC38AE00890469 /* CountString.m */; };
 /* End PBXBuildFile section */
 
@@ -116,6 +117,8 @@
 		3128D5C018E910BF00B239D4 /* CustomSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegmentControl.m; sourceTree = "<group>"; };
 		31435B0418ED560A00E26DA2 /* CustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomScrollView.h; sourceTree = "<group>"; };
 		31435B0518ED560A00E26DA2 /* CustomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomScrollView.m; sourceTree = "<group>"; };
+		315BE02F18F53AE0002F1D18 /* CustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwitch.h; sourceTree = "<group>"; };
+		315BE03018F53AE0002F1D18 /* CustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSwitch.m; sourceTree = "<group>"; };
 		31652E8818DA99C20001F0E2 /* HeaderForMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderForMacro.h; sourceTree = "<group>"; };
 		31A852F418DC38AE00890469 /* CountString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountString.h; sourceTree = "<group>"; };
 		31A852F518DC38AE00890469 /* CountString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountString.m; sourceTree = "<group>"; };
@@ -278,6 +281,8 @@
 				3114992518D93CC900906ED5 /* customView.m */,
 				31435B0418ED560A00E26DA2 /* CustomScrollView.h */,
 				31435B0518ED560A00E26DA2 /* CustomScrollView.m */,
+				315BE02F18F53AE0002F1D18 /* CustomSwitch.h */,
+				315BE03018F53AE0002F1D18 /* CustomSwitch.m */,
 			);
 			name = CustomFile;
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 				3114991B18D93B1F00906ED5 /* wDynamicLayout.m in Sources */,
 				3114992B18D93D2100906ED5 /* firstViewController.m in Sources */,
 				3114992C18D93D2100906ED5 /* secondViewController.m in Sources */,
+				315BE03118F53AE0002F1D18 /* CustomSwitch.m in Sources */,
 				3114992618D93CC900906ED5 /* customView.m in Sources */,
 				311498F518D93AE700906ED5 /* AppDelegate.m in Sources */,
 				311498F118D93AE700906ED5 /* main.m in Sources */,
