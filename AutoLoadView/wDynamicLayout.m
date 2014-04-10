@@ -12,6 +12,7 @@
 #import "CustomSegmentControl.h"
 #import "CustomScrollView.h"
 #import "ControlMapFJ.h"
+#import "CustomSwitch.h"
 
 @implementation wDynamicLayout{
     
@@ -23,7 +24,7 @@
 -(void)loadItemsForGroup:(NSDictionary *)dictionary AndBaseView:(id)baseView{
     CountString *lCount = [[CountString alloc]init];
     
-    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView"];//用于判断接受控键的类型
+    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView",@"switch"];//用于判断接受控键的类型
     NSDictionary *lDictionary = dictionary;//通过json文件解析出来的字典用于动态布局
     NSInteger numOfitems;               //纪录需要布局的控键的个数
     numOfitems = [lDictionary allKeys].count;
@@ -324,7 +325,20 @@
                         [baseView addSubview:lscrollView];
                         break;
                     }//加载scrollView
-    
+                    case 8:{
+                        CustomSwitch *lCustomS = [[CustomSwitch alloc]init];
+                        NSString *xString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_x"]];
+                        CGFloat rect_x =[lCount operatorString:xString];
+                        NSString *yString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_y"]];
+                        CGFloat rect_y =[lCount operatorString:yString];
+                        NSString *wString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_width"]];
+                        CGFloat rect_width =[lCount operatorString:wString];
+                        NSString *hString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_height"]];
+                        CGFloat rect_height =[lCount operatorString:hString];
+                        lCustomS.frame = CGRectMake(rect_x,rect_y,rect_width,rect_height);
+                        [baseView addSubview:lCustomS];
+                        break;
+                    }
                     default:
                         break;
                 }
@@ -361,7 +375,7 @@
 }
 //每一块的控键类型在这里添加
 -(NSDictionary *)viewTagFromDictionary:(NSDictionary *)dictionary{
-    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView"];//用于判断接受控键的类型
+    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView",@"switch"];//用于判断接受控键的类型
     NSMutableDictionary *lMdic = [[NSMutableDictionary alloc]init];
     for (int i=0;  i<[dictionary.allKeys count];i++) {
         NSString *lKeyString = [NSString stringWithFormat:@"item_%d",i];
@@ -425,7 +439,12 @@
                         [lMdic addEntriesFromDictionary:subOneDic];
                         break;
                     }
-                        
+                    case 8:{
+                        NSString *handlesOfType = [AttributeDic objectForKey:@"type"];
+                        NSInteger numOfTag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
+                        [lMdic setObject:handlesOfType forKey:[NSString stringWithFormat:@"%ld",(long)numOfTag]];
+                        break;
+                    }
                     default:
                         break;
                 }

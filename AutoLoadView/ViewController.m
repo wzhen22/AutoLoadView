@@ -27,6 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    UISwitch
+    
     wDynamicLayout *dynamicLayout = [[wDynamicLayout alloc]init];
     NSString *lstring = [[NSBundle mainBundle] resourcePath];
     NSString *path = [lstring stringByAppendingPathComponent:@"DocumentsLayout.json"];
