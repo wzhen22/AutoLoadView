@@ -14,17 +14,24 @@
 #import "ControlMapFJ.h"
 #import "CustomSwitch.h"
 
+@interface wDynamicLayout (){
+
+}
+
+@end
+
 @implementation wDynamicLayout{
     
 }
+//@synthesize typeOfArray;
 //-(void)setTypeOfArray:(NSArray *)typeOfArray{
-//    self.typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView"];//用于判断接受控键的类型
+//    self.typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView",@"switch"];//用于判断接受控键的类型
 //}
 
 -(void)loadItemsForGroup:(NSDictionary *)dictionary AndBaseView:(id)baseView{
     CountString *lCount = [[CountString alloc]init];
     
-    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView",@"switch"];//用于判断接受控键的类型
+    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView",@"switch",@"imageView"];//用于判断接受控键的类型
     NSDictionary *lDictionary = dictionary;//通过json文件解析出来的字典用于动态布局
     NSInteger numOfitems;               //纪录需要布局的控键的个数
     numOfitems = [lDictionary allKeys].count;
@@ -174,7 +181,7 @@
                         NSDictionary *dictionary = [AttributeDic objectForKey:@"SkeyItems"];
                         NSArray *items = [[NSArray alloc]init];
                         if ([[AttributeDic objectForKey:@"SkeyIsPicture"] intValue]) {
-                            items = [self imageOfArrayOfTitleFormJSON:dictionary];
+                            items = [self imageOfArrayOfTitleFormJSON:dictionary andString:@"segment"];
                         }else{
                             items = [self titleOfArrayOfTitleFormJSON:dictionary];
 
@@ -336,9 +343,59 @@
                         NSString *hString = [lCount getStatement:[AttributeDic objectForKey:@"SkeyCGRect_height"]];
                         CGFloat rect_height =[lCount operatorString:hString];
                         lCustomS.frame = CGRectMake(rect_x,rect_y,rect_width,rect_height);
+                        NSInteger isOn = [[AttributeDic objectForKey:@"SkeyIsOn"] integerValue];
+                        lCustomS.on = [self boolFromJSON:isOn];
+                        NSInteger isRound = [[AttributeDic objectForKey:@"SkeyIsRound"] integerValue];
+                        lCustomS.isRounded = [self boolFromJSON:isRound];
+                        NSInteger borderNum = [[AttributeDic objectForKey:@"SkeyBorderColor"] integerValue];
+                        lCustomS.borderColor = [self colorFromJSONnum:borderNum];
+                        NSInteger inactiveNum = [[AttributeDic objectForKey:@"SkeyInactiveColor"] integerValue];
+                        lCustomS.inactiveColor = [self colorFromJSONnum:inactiveNum];
+                        NSInteger activeNum = [[AttributeDic objectForKey:@"SkeyActiveColor"] integerValue];
+                        lCustomS.activeColor = [self colorFromJSONnum:activeNum];
+                        NSInteger onColorNum = [[AttributeDic objectForKey:@"SkeyOncolor"] integerValue];
+                        lCustomS.onColor = [self colorFromJSONnum:onColorNum];
+                        NSInteger shadowNum = [[AttributeDic objectForKey:@"SkeyShadowColor"] integerValue];
+                        lCustomS.shadowColor = [self colorFromJSONnum:shadowNum];
+                        NSInteger isImage = [[AttributeDic objectForKey:@"SkeyIsImage"] integerValue];
+                        if ([self boolFromJSON:isImage]) {
+                            NSString *onImageName = [AttributeDic objectForKey:@"SkeyOnImage"];
+                            lCustomS.onImage = [self imageFromJSON:onImageName];
+                            NSString *offImageName = [AttributeDic objectForKey:@"SkeyOffImage"];
+                            lCustomS.offImage = [self imageFromJSON:offImageName];
+                        }
+                         lCustomS.tag = [[AttributeDic objectForKey:@"SkeyOfTag"] intValue];
                         [baseView addSubview:lCustomS];
                         //test git
                         break;
+                    }//加载customSwitch
+                    case 9:{
+                        UIImageView *lImageView = [[UIImageView alloc]init];
+                        NSString *xString = [lCount getStatement:[AttributeDic objectForKey:@"IkeyCGRect_x"]];
+                        CGFloat rect_x =[lCount operatorString:xString];
+                        NSString *yString = [lCount getStatement:[AttributeDic objectForKey:@"IkeyCGRect_y"]];
+                        CGFloat rect_y =[lCount operatorString:yString];
+                        NSString *wString = [lCount getStatement:[AttributeDic objectForKey:@"IkeyCGRect_width"]];
+                        CGFloat rect_width =[lCount operatorString:wString];
+                        NSString *hString = [lCount getStatement:[AttributeDic objectForKey:@"IkeyCGRect_height"]];
+                        CGFloat rect_height =[lCount operatorString:hString];
+                        lImageView.frame = CGRectMake(rect_x,rect_y,rect_width,rect_height);
+                        NSInteger colorInteger = [[AttributeDic objectForKey:@"IkeyBackGroudColor"] integerValue];
+                        lImageView.backgroundColor = [self colorFromJSONnum:colorInteger];
+                        NSInteger modeInteger = [[AttributeDic objectForKey:@"IkeyContentMode"] integerValue];
+                        lImageView.contentMode = [self modeFromJSON:modeInteger];
+                        NSInteger isAnimationImages = [[AttributeDic objectForKey:@"IkeyIsAnimation"] integerValue];
+                        if ([self boolFromJSON:isAnimationImages]) {
+                            NSDictionary *dictionary = [AttributeDic objectForKey:@"IkeyAnimationImages"];
+                            NSString *str = @"image";
+                            lImageView.animationImages = [self imageOfArrayOfTitleFormJSON:dictionary andString:str];
+                            lImageView.animationDuration = [[AttributeDic objectForKey:@"IkeyAnimationDuration"] floatValue];
+                            lImageView.animationRepeatCount = [[AttributeDic objectForKey:@"IkeyAnimationRepeatCount"] floatValue];
+                            [lImageView startAnimating];
+                        }else{
+                            lImageView.image = [UIImage imageNamed:[AttributeDic objectForKey:@"IkeyImage"]];
+                        }
+                        [baseView addSubview:lImageView];
                     }
                     default:
                         break;
@@ -467,11 +524,11 @@
     }
     return jArray;
 }
--(NSArray *)imageOfArrayOfTitleFormJSON:(NSDictionary *)dictionary{
+-(NSArray *)imageOfArrayOfTitleFormJSON:(NSDictionary *)dictionary andString:(NSString *)string{
     NSMutableArray *jArray = [[NSMutableArray alloc]initWithCapacity:10];
     for (int i = 0; i<dictionary.allKeys.count; i++) {
-        NSString *string = [dictionary objectForKey:[NSString stringWithFormat:@"segment_%d",i]];
-        UIImage *image = [UIImage imageNamed:string];
+        NSString *strings = [dictionary objectForKey:[NSString stringWithFormat:@"%@_%d",string,i]];
+        UIImage *image = [UIImage imageNamed:strings];
         [jArray addObject:image];
     }
     return jArray;
@@ -591,6 +648,24 @@
         isOK  = NO;
     }
     return isOK;
+}
+
+-(UIImage *)imageFromJSON:(NSString *)string{
+    UIImage *image = [UIImage imageNamed:string];
+    return image;
+}
+-(UIViewContentMode)modeFromJSON:(NSInteger )integer{
+    UIViewContentMode contentMode=UIViewContentModeScaleAspectFill;
+    if (integer ==0) {
+        contentMode = UIViewContentModeScaleAspectFill;
+    }
+    if (integer == 1) {
+        contentMode = UIViewContentModeScaleAspectFit;
+    }
+    if (integer == 2) {
+        contentMode = UIViewContentModeScaleToFill;
+    }
+    return contentMode;
 }
 -(void)textClick{
     //do any additional setup

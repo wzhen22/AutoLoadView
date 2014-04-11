@@ -21,7 +21,7 @@
 -(NSDictionary *)getItemsOfGroup:(NSDictionary *)wDictionary;//获取每个控键的类型和tag值
 
 -(NSArray *)titleOfArrayOfTitleFormJSON:(NSDictionary *)dictionary;
--(NSArray *)imageOfArrayOfTitleFormJSON:(NSDictionary *)dictionary;
+-(NSArray *)imageOfArrayOfTitleFormJSON:(NSDictionary *)dictionary andString:(NSString *)string;
 
 -(UIColor *)colorFromJSONnum:(NSInteger)num;//转换为基本颜色样式
 
@@ -36,5 +36,9 @@
 -(BOOL) boolFromJSON:(NSInteger )integer;
 
 -(NSDictionary *)viewTagFromDictionary:(NSDictionary *)dictionary;
+
+-(UIImage *)imageFromJSON:(NSString *)string;
+
+-(UIViewContentMode)modeFromJSON:(NSInteger )integer;
 
 @end
