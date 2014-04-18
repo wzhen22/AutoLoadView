@@ -10,6 +10,8 @@
 #import "secondViewController.h"
 //#import "tableBarViewController.h"
 #import "customButton.h"
+#import "HeaderAndFooterRefresh.h"
+
 
 @interface firstViewController ()
 
@@ -33,6 +35,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
+    
 	// Do any additional setup after loading the view.
     
 //    NSArray *typeOfArray = @[@"button",@"label",@"textField"];//用于判断接受控键的类型

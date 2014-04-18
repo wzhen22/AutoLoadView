@@ -31,7 +31,7 @@
 -(void)loadItemsForGroup:(NSDictionary *)dictionary AndBaseView:(id)baseView{
     CountString *lCount = [[CountString alloc]init];
     
-    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView",@"switch",@"imageView"];//用于判断接受控键的类型
+    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scrollView",@"switch",@"imageView"];//用于判断接受控键的类型
     NSDictionary *lDictionary = dictionary;//通过json文件解析出来的字典用于动态布局
     NSInteger numOfitems;               //纪录需要布局的控键的个数
     numOfitems = [lDictionary allKeys].count;
@@ -433,7 +433,7 @@
 }
 //每一块的控键类型在这里添加
 -(NSDictionary *)viewTagFromDictionary:(NSDictionary *)dictionary{
-    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scollView",@"switch"];//用于判断接受控键的类型
+    NSArray *typeOfArray = @[@"button",@"label",@"textField",@"customView",@"segment",@"slider",@"pageControl",@"scrollView",@"switch"];//用于判断接受控键的类型
     NSMutableDictionary *lMdic = [[NSMutableDictionary alloc]init];
     for (int i=0;  i<[dictionary.allKeys count];i++) {
         NSString *lKeyString = [NSString stringWithFormat:@"item_%d",i];

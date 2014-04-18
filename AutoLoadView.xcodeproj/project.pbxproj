@@ -45,6 +45,11 @@
 		31435B0618ED560A00E26DA2 /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31435B0518ED560A00E26DA2 /* CustomScrollView.m */; };
 		315BE03118F53AE0002F1D18 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 315BE03018F53AE0002F1D18 /* CustomSwitch.m */; };
 		31A852F618DC38AE00890469 /* CountString.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A852F518DC38AE00890469 /* CountString.m */; };
+		31D0791F18FD18C300DC8386 /* image.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 31D0791618FD18C300DC8386 /* image.bundle */; };
+		31D0792018FD18C300DC8386 /* RefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0791818FD18C300DC8386 /* RefreshFooterView.m */; };
+		31D0792118FD18C300DC8386 /* RefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0791A18FD18C300DC8386 /* RefreshHeaderView.m */; };
+		31D0792218FD18C300DC8386 /* WZRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0791C18FD18C300DC8386 /* WZRefreshBaseView.m */; };
+		31D0792318FD18C300DC8386 /* WZRefrshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0791E18FD18C300DC8386 /* WZRefrshConst.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +130,16 @@
 		31652E8818DA99C20001F0E2 /* HeaderForMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderForMacro.h; sourceTree = "<group>"; };
 		31A852F418DC38AE00890469 /* CountString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountString.h; sourceTree = "<group>"; };
 		31A852F518DC38AE00890469 /* CountString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountString.m; sourceTree = "<group>"; };
+		31D0791618FD18C300DC8386 /* image.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = image.bundle; sourceTree = "<group>"; };
+		31D0791718FD18C300DC8386 /* RefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshFooterView.h; sourceTree = "<group>"; };
+		31D0791818FD18C300DC8386 /* RefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshFooterView.m; sourceTree = "<group>"; };
+		31D0791918FD18C300DC8386 /* RefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshHeaderView.h; sourceTree = "<group>"; };
+		31D0791A18FD18C300DC8386 /* RefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshHeaderView.m; sourceTree = "<group>"; };
+		31D0791B18FD18C300DC8386 /* WZRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZRefreshBaseView.h; sourceTree = "<group>"; };
+		31D0791C18FD18C300DC8386 /* WZRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZRefreshBaseView.m; sourceTree = "<group>"; };
+		31D0791D18FD18C300DC8386 /* WZRefrshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WZRefrshConst.h; sourceTree = "<group>"; };
+		31D0791E18FD18C300DC8386 /* WZRefrshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WZRefrshConst.m; sourceTree = "<group>"; };
+		31D0792618FD221200DC8386 /* HeaderAndFooterRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderAndFooterRefresh.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +289,7 @@
 		3114992218D93BB700906ED5 /* CustomFile */ = {
 			isa = PBXGroup;
 			children = (
+				31D0792418FD18CE00DC8386 /* customRefresh */,
 				3137408118F7DF4400DB33BF /* UIViewController+CWStatusBarNotification.h */,
 				3137408218F7DF4400DB33BF /* UIViewController+CWStatusBarNotification.m */,
 				31A852F418DC38AE00890469 /* CountString.h */,
@@ -299,6 +315,23 @@
 				3114991F18D93B9300906ED5 /* DocumentsLayout.json */,
 			);
 			name = DataSourse;
+			sourceTree = "<group>";
+		};
+		31D0792418FD18CE00DC8386 /* customRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				31D0791618FD18C300DC8386 /* image.bundle */,
+				31D0791718FD18C300DC8386 /* RefreshFooterView.h */,
+				31D0792618FD221200DC8386 /* HeaderAndFooterRefresh.h */,
+				31D0791818FD18C300DC8386 /* RefreshFooterView.m */,
+				31D0791918FD18C300DC8386 /* RefreshHeaderView.h */,
+				31D0791A18FD18C300DC8386 /* RefreshHeaderView.m */,
+				31D0791B18FD18C300DC8386 /* WZRefreshBaseView.h */,
+				31D0791C18FD18C300DC8386 /* WZRefreshBaseView.m */,
+				31D0791D18FD18C300DC8386 /* WZRefrshConst.h */,
+				31D0791E18FD18C300DC8386 /* WZRefrshConst.m */,
+			);
+			name = customRefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,6 +441,7 @@
 				3108150618DAC86400C90513 /* 8.png in Resources */,
 				310814FF18DAC86400C90513 /* 1.png in Resources */,
 				311498EF18D93AE700906ED5 /* InfoPlist.strings in Resources */,
+				31D0791F18FD18C300DC8386 /* image.bundle in Resources */,
 				311498F818D93AE700906ED5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,14 +469,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				3104E2A818F3F63E001F31C1 /* ControlMapFJ.m in Sources */,
+				31D0792118FD18C300DC8386 /* RefreshHeaderView.m in Sources */,
 				3128D5C118E910BF00B239D4 /* CustomSegmentControl.m in Sources */,
 				311498FB18D93AE700906ED5 /* ViewController.m in Sources */,
+				31D0792318FD18C300DC8386 /* WZRefrshConst.m in Sources */,
 				3114991E18D93B2F00906ED5 /* customButton.m in Sources */,
 				3114991B18D93B1F00906ED5 /* wDynamicLayout.m in Sources */,
 				3114992B18D93D2100906ED5 /* firstViewController.m in Sources */,
+				31D0792018FD18C300DC8386 /* RefreshFooterView.m in Sources */,
 				3114992C18D93D2100906ED5 /* secondViewController.m in Sources */,
 				3137408318F7DF4400DB33BF /* UIViewController+CWStatusBarNotification.m in Sources */,
 				315BE03118F53AE0002F1D18 /* CustomSwitch.m in Sources */,
+				31D0792218FD18C300DC8386 /* WZRefreshBaseView.m in Sources */,
 				3114992618D93CC900906ED5 /* customView.m in Sources */,
 				311498F518D93AE700906ED5 /* AppDelegate.m in Sources */,
 				311498F118D93AE700906ED5 /* main.m in Sources */,
