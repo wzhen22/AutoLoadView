@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3104E2A818F3F63E001F31C1 /* ControlMapFJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 3104E2A718F3F63E001F31C1 /* ControlMapFJ.m */; };
 		3107773618D981AC00E7CEF9 /* pic2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3107773518D981AC00E7CEF9 /* pic2.png */; };
 		310814FF18DAC86400C90513 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814F618DAC86400C90513 /* 1.png */; };
 		3108150018DAC86400C90513 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 310814F718DAC86400C90513 /* 2.png */; };
@@ -42,6 +41,12 @@
 		3114992C18D93D2100906ED5 /* secondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3114992A18D93D2100906ED5 /* secondViewController.m */; };
 		3128D5C118E910BF00B239D4 /* CustomSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3128D5C018E910BF00B239D4 /* CustomSegmentControl.m */; };
 		3137408318F7DF4400DB33BF /* UIViewController+CWStatusBarNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 3137408218F7DF4400DB33BF /* UIViewController+CWStatusBarNotification.m */; };
+		3138FE2E190A53340066241D /* firstViewController.json in Resources */ = {isa = PBXBuildFile; fileRef = 3138FE2D190A53340066241D /* firstViewController.json */; };
+		3138FE44190A54BB0066241D /* TableOfMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3138FE39190A54BB0066241D /* TableOfMapper.m */; };
+		3138FE45190A54BB0066241D /* BaseCellMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 3138FE3C190A54BB0066241D /* BaseCellMember.m */; };
+		3138FE46190A54BB0066241D /* FirstCellMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 3138FE3E190A54BB0066241D /* FirstCellMember.m */; };
+		3138FE47190A54BB0066241D /* WCustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3138FE41190A54BB0066241D /* WCustomTableView.m */; };
+		3138FE48190A54BB0066241D /* WFirstCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3138FE43190A54BB0066241D /* WFirstCustomCell.m */; };
 		31435B0618ED560A00E26DA2 /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31435B0518ED560A00E26DA2 /* CustomScrollView.m */; };
 		315BE03118F53AE0002F1D18 /* CustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 315BE03018F53AE0002F1D18 /* CustomSwitch.m */; };
 		31A852F618DC38AE00890469 /* CountString.m in Sources */ = {isa = PBXBuildFile; fileRef = 31A852F518DC38AE00890469 /* CountString.m */; };
@@ -75,8 +80,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3104E2A618F3F63E001F31C1 /* ControlMapFJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlMapFJ.h; sourceTree = "<group>"; };
-		3104E2A718F3F63E001F31C1 /* ControlMapFJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlMapFJ.m; sourceTree = "<group>"; };
 		3107773518D981AC00E7CEF9 /* pic2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic2.png; sourceTree = "<group>"; };
 		310814F618DAC86400C90513 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		310814F718DAC86400C90513 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
@@ -123,6 +126,17 @@
 		3128D5C018E910BF00B239D4 /* CustomSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegmentControl.m; sourceTree = "<group>"; };
 		3137408118F7DF4400DB33BF /* UIViewController+CWStatusBarNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWStatusBarNotification.h"; sourceTree = "<group>"; };
 		3137408218F7DF4400DB33BF /* UIViewController+CWStatusBarNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CWStatusBarNotification.m"; sourceTree = "<group>"; };
+		3138FE2D190A53340066241D /* firstViewController.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = firstViewController.json; sourceTree = "<group>"; };
+		3138FE38190A54BB0066241D /* TableOfMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableOfMapper.h; sourceTree = "<group>"; };
+		3138FE39190A54BB0066241D /* TableOfMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableOfMapper.m; sourceTree = "<group>"; };
+		3138FE3B190A54BB0066241D /* BaseCellMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCellMember.h; sourceTree = "<group>"; };
+		3138FE3C190A54BB0066241D /* BaseCellMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCellMember.m; sourceTree = "<group>"; };
+		3138FE3D190A54BB0066241D /* FirstCellMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstCellMember.h; sourceTree = "<group>"; };
+		3138FE3E190A54BB0066241D /* FirstCellMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstCellMember.m; sourceTree = "<group>"; };
+		3138FE40190A54BB0066241D /* WCustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCustomTableView.h; sourceTree = "<group>"; };
+		3138FE41190A54BB0066241D /* WCustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCustomTableView.m; sourceTree = "<group>"; };
+		3138FE42190A54BB0066241D /* WFirstCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFirstCustomCell.h; sourceTree = "<group>"; };
+		3138FE43190A54BB0066241D /* WFirstCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFirstCustomCell.m; sourceTree = "<group>"; };
 		31435B0418ED560A00E26DA2 /* CustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomScrollView.h; sourceTree = "<group>"; };
 		31435B0518ED560A00E26DA2 /* CustomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomScrollView.m; sourceTree = "<group>"; };
 		315BE02F18F53AE0002F1D18 /* CustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSwitch.h; sourceTree = "<group>"; };
@@ -280,8 +294,6 @@
 			children = (
 				3114991918D93B1F00906ED5 /* wDynamicLayout.h */,
 				3114991A18D93B1F00906ED5 /* wDynamicLayout.m */,
-				3104E2A618F3F63E001F31C1 /* ControlMapFJ.h */,
-				3104E2A718F3F63E001F31C1 /* ControlMapFJ.m */,
 			);
 			name = AutoLoadFile;
 			sourceTree = "<group>";
@@ -289,6 +301,7 @@
 		3114992218D93BB700906ED5 /* CustomFile */ = {
 			isa = PBXGroup;
 			children = (
+				3138FE36190A54BB0066241D /* CustomTableView */,
 				31D0792418FD18CE00DC8386 /* customRefresh */,
 				3137408118F7DF4400DB33BF /* UIViewController+CWStatusBarNotification.h */,
 				3137408218F7DF4400DB33BF /* UIViewController+CWStatusBarNotification.m */,
@@ -313,8 +326,50 @@
 			children = (
 				31652E8818DA99C20001F0E2 /* HeaderForMacro.h */,
 				3114991F18D93B9300906ED5 /* DocumentsLayout.json */,
+				3138FE2D190A53340066241D /* firstViewController.json */,
 			);
 			name = DataSourse;
+			sourceTree = "<group>";
+		};
+		3138FE36190A54BB0066241D /* CustomTableView */ = {
+			isa = PBXGroup;
+			children = (
+				3138FE37190A54BB0066241D /* modelFromJSON */,
+				3138FE3A190A54BB0066241D /* modle */,
+				3138FE3F190A54BB0066241D /* View */,
+			);
+			path = CustomTableView;
+			sourceTree = "<group>";
+		};
+		3138FE37190A54BB0066241D /* modelFromJSON */ = {
+			isa = PBXGroup;
+			children = (
+				3138FE38190A54BB0066241D /* TableOfMapper.h */,
+				3138FE39190A54BB0066241D /* TableOfMapper.m */,
+			);
+			path = modelFromJSON;
+			sourceTree = "<group>";
+		};
+		3138FE3A190A54BB0066241D /* modle */ = {
+			isa = PBXGroup;
+			children = (
+				3138FE3B190A54BB0066241D /* BaseCellMember.h */,
+				3138FE3C190A54BB0066241D /* BaseCellMember.m */,
+				3138FE3D190A54BB0066241D /* FirstCellMember.h */,
+				3138FE3E190A54BB0066241D /* FirstCellMember.m */,
+			);
+			path = modle;
+			sourceTree = "<group>";
+		};
+		3138FE3F190A54BB0066241D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3138FE40190A54BB0066241D /* WCustomTableView.h */,
+				3138FE41190A54BB0066241D /* WCustomTableView.m */,
+				3138FE42190A54BB0066241D /* WFirstCustomCell.h */,
+				3138FE43190A54BB0066241D /* WFirstCustomCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		31D0792418FD18CE00DC8386 /* customRefresh */ = {
@@ -435,6 +490,7 @@
 				3114992018D93B9300906ED5 /* DocumentsLayout.json in Resources */,
 				311498FD18D93AE700906ED5 /* Images.xcassets in Resources */,
 				3108150018DAC86400C90513 /* 2.png in Resources */,
+				3138FE2E190A53340066241D /* firstViewController.json in Resources */,
 				3108150118DAC86400C90513 /* 3.png in Resources */,
 				3107773618D981AC00E7CEF9 /* pic2.png in Resources */,
 				3108150718DAC86400C90513 /* 9.png in Resources */,
@@ -468,7 +524,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3104E2A818F3F63E001F31C1 /* ControlMapFJ.m in Sources */,
+				3138FE46190A54BB0066241D /* FirstCellMember.m in Sources */,
+				3138FE44190A54BB0066241D /* TableOfMapper.m in Sources */,
 				31D0792118FD18C300DC8386 /* RefreshHeaderView.m in Sources */,
 				3128D5C118E910BF00B239D4 /* CustomSegmentControl.m in Sources */,
 				311498FB18D93AE700906ED5 /* ViewController.m in Sources */,
@@ -480,11 +537,14 @@
 				3114992C18D93D2100906ED5 /* secondViewController.m in Sources */,
 				3137408318F7DF4400DB33BF /* UIViewController+CWStatusBarNotification.m in Sources */,
 				315BE03118F53AE0002F1D18 /* CustomSwitch.m in Sources */,
+				3138FE47190A54BB0066241D /* WCustomTableView.m in Sources */,
 				31D0792218FD18C300DC8386 /* WZRefreshBaseView.m in Sources */,
+				3138FE45190A54BB0066241D /* BaseCellMember.m in Sources */,
 				3114992618D93CC900906ED5 /* customView.m in Sources */,
 				311498F518D93AE700906ED5 /* AppDelegate.m in Sources */,
 				311498F118D93AE700906ED5 /* main.m in Sources */,
 				31435B0618ED560A00E26DA2 /* CustomScrollView.m in Sources */,
+				3138FE48190A54BB0066241D /* WFirstCustomCell.m in Sources */,
 				31A852F618DC38AE00890469 /* CountString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
