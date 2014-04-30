@@ -20,6 +20,11 @@
     return self;
 }
 
+-(void)setNumOfType:(NSInteger)numOfType{
+
+    _numOfType = numOfType;
+}
+
 -(void)clickAction{
     _myblock (self);
 }

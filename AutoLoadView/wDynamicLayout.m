@@ -74,7 +74,7 @@
                         //设置控键的标题名称
                         NSString *nameOfButton = [AttributeDic objectForKey:@"BkeyNameOfText"];
                         [lButton setTitle:nameOfButton forState:UIControlStateNormal];
-                        lButton.numOfType = [[AttributeDic objectForKey:@"BkeyOfClick"] intValue];
+                        lButton.numOfType = [[AttributeDic objectForKey:@"BkeyOfClick"] integerValue];
                         lButton.tag = [[AttributeDic objectForKey:@"BkeyOfTag"] intValue];//设置控键的tag值
                         [baseView addSubview:lButton];
                         
@@ -403,6 +403,7 @@
                     case 10:{
                         WCustomTableView *wtableView = [WCustomTableView loadTableViewWithModer:AttributeDic];
                         [baseView addSubview:wtableView];
+                        break;
                     }
                     default:
                         break;

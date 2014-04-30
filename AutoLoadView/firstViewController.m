@@ -15,12 +15,13 @@
 #import "customView.h"
 #import "CustomSegmentControl.h"
 #import "WCustomTableView.h"
-
+#import "BaseCellMember.h"
 
 @interface firstViewController ()
 
 @end
-
+#define keyForRowData @"rowItems"
+#define keyForSectionName @"sectionName"
 @implementation firstViewController{
     int  responseOfType;
 }
@@ -53,6 +54,7 @@
     }
     WCustomTableView *wCusTV = (WCustomTableView *)[self.view viewWithTag:10001];
     wCusTV.delegate = self;
+//    [self addHeader];jhdgjdgjdhjdhj
 //    [wCusTV.dataArray removeAllObjects];
 //    [wCusTV reloadData];
     NSDictionary *ldic = [dynamicLayout getItemsOfGroup:lDictionary];//直接调用解析的json文件的第一个字典
@@ -61,15 +63,77 @@
     
 }
 
+- (void)addHeader
+{
+    WCustomTableView *tableVC = (WCustomTableView *)[self.view viewWithTag:10001];
+    RefreshHeaderView *headerView = [RefreshHeaderView header];
+    headerView.scrollView  = tableVC;
+    headerView.beginBolock = ^(WZRefreshBaseView *refreshView){
+        NSMutableDictionary *dictionar =[[NSMutableDictionary alloc]init];
+        NSMutableArray *itemArray = [[NSMutableArray alloc]init];
+        for (int i = 0; i<2; i++) {
+            BaseCellMember *member = [[BaseCellMember alloc]init];
+            if (i%2==0) {
+                member.mainString = @"hello ?";
+                member.detailString = @"cs";
+                member.isShowImage = YES;
+                member.imageName = [UIImage imageNamed:@"5"];
+            }else{
+                
+                member.mainString =@"hello!";
+                member.detailString = @"me";
+                member.isShowImage = NO;
+                member.imageName = nil;
+            }
+            [itemArray addObject:member];
+        }
+        [dictionar setObject:itemArray forKey:keyForRowData];
+        [dictionar setObject:@"section" forKey:keyForSectionName];
+        [tableVC.dataArray addObject:dictionar];
+        [tableVC performSelector:@selector(doneWithView:) withObject:refreshView afterDelay:2];
+        
+    };
+    headerView.endBlock = ^(WZRefreshBaseView *refreshView){
+        NSLog(@"refresh is end!");
+    };
+    headerView.changeBlock = ^(WZRefreshBaseView *refreshView,WZRefreshState state ){
+        switch (state) {
+            case WZRefreshStateDidRefreshing:
+                NSLog(@"refreshing");
+                break;
+            case WZRefreshStateNormal:
+                NSLog(@"normal");
+                break;
+            case WZRefreshStatePulling:
+                NSLog(@"pulling");
+                break;
+            case WZRefreshStateWillRefreshing:
+                NSLog(@"willRefreshing");
+                break;
+            default:
+                break;
+        }
+    };
+    [headerView beginRefreshing];
+
+}
+
+-(void)doneWithView:(WZRefreshBaseView *)refreshView{
+    WCustomTableView *tableVC = (WCustomTableView *)[self.view viewWithTag:10001];
+    [tableVC reloadData];
+    [refreshView endRefreshing];
+}
+
+
 //对事件的描述方法
 -(void)achieveHandle:(NSDictionary *)dictionary{
   
     int a=0;//记录button的事件个数
     int b=0;//记录customview的事件个数
-    int c=0;//记录segment的事件个数
-    int d=0;//记录slider的事件个数
-    int e=0;//记录textfield被点击的事件触发
-    int f=0;//记录pageControl被点击的事件触发
+//    int c=0;//记录segment的事件个数
+//    int d=0;//记录slider的事件个数
+//    int e=0;//记录textfield被点击的事件触发
+//    int f=0;//记录pageControl被点击的事件触发
     NSArray *allOfValue = [dictionary allValues];
     for (int i=0; i<allOfValue.count; i++) {
         
@@ -108,47 +172,43 @@
                 [cV setBackgroundColor:[UIColor redColor]];
             };
         }
-        if ([[allOfValue objectAtIndex:i]isEqualToString:@"segment"]) {
-            c++;
-            NSString *key = [NSString stringWithFormat:@"500%d",c];
-            //            NSLog(@"key=%@",key);
-            CustomSegmentControl *cSView = (CustomSegmentControl *)[self.view viewWithTag:[key intValue]];
-            [cSView addTarget:self action:@selector(segmentClick:) forControlEvents:UIControlEventValueChanged];
-        }
-        if ([[allOfValue objectAtIndex:i]isEqualToString:@"slider"]) {
-            d++;
-            NSString *key = [NSString stringWithFormat:@"600%d",d];
-            //            NSLog(@"key=%@",key);
-            UISlider *sliderView = (UISlider *)[self.view viewWithTag:[key intValue]];
-            UIImage *image = [UIImage imageNamed:@"4"];
-            [sliderView setThumbImage:image forState:UIControlStateNormal];
-            [sliderView addTarget:self action:@selector(sliderClick:) forControlEvents:UIControlEventValueChanged];
-        }
-        if ([[allOfValue objectAtIndex:i]isEqualToString:@"textField"]) {
-            e++;
-            NSString *key = [NSString stringWithFormat:@"300%d",e];
-            //            NSLog(@"key=%@",key);
-            UITextField *textField = (UITextField *) [self.view viewWithTag:[key intValue]];
-            textField.keyboardType = UIKeyboardTypeWebSearch;
-            textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-            textField.borderStyle = UITextBorderStyleRoundedRect;
-            [textField addTarget:self action:@selector(textFieldClick:) forControlEvents:UIControlEventEditingDidEndOnExit];
-        }
-        if ([[allOfValue objectAtIndex:i]isEqualToString:@"pageControl"]) {
-            f++;
-            NSString *key = [NSString stringWithFormat:@"700%d",f];
-            UISlider *sliderView = (UISlider *)[self.view viewWithTag:[key intValue]];
-            [sliderView addTarget:self action:@selector(pageControlClick:) forControlEvents:UIControlEventTouchUpInside];
-        }
         
         
     }
     
 }
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    return @"index";
+}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//  
+//    
+//}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    NSIndexPath *lastIndex = [tableView indexPathForSelectedRow];
+    NSLog(@"%@",lastIndex);
+    
+    NSLog(@"hello");
+}
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     
     NSLog(@"accessoryButtonTappedForRowWithIndexPath");
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+//    view.backgroundColor = [UIColor blueColor];
+    UILabel *laber = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 44)];
+    laber.text =@"总计：";
+    UILabel *wlaber = [[UILabel alloc]initWithFrame:CGRectMake(220, 0, 60, 44)];
+    wlaber.text =@"$199";
+    [view addSubview:laber];
+    [view addSubview:wlaber];
+    return view;
 }
 #pragma mark textField exit
 

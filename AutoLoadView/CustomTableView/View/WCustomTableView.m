@@ -33,6 +33,9 @@
     wcTabelView.frame = wRect;
     wcTabelView.isCustomCell = [tableOfMapper.isCustomCell boolValue];
     wcTabelView.tag = [tableOfMapper.tag integerValue];
+    wcTabelView.separatorStyle = UITableViewCellSeparatorStyleSingleLineEtched;//设置分割线
+    wcTabelView.allowsSelection  = YES; //cell是否可以被选择
+    
     if (wcTabelView.isCustomCell) {
         if (wcTabelView.style == UITableViewStylePlain) {
             [wcTabelView gainFCMDataArray];
@@ -55,6 +58,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        _dataArray  = [[NSMutableArray alloc]init];
         self.delegate = self;
         self.dataSource = self;
     }
@@ -263,15 +267,19 @@
 //    }
 //    return cell;
     WFirstCustomCell *wcCell = [WFirstCustomCell cellWithTableView:tableView];
+    wcCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    
     if (tableView.style == UITableViewStylePlain) {
  
         if (_isCustomCell) {
             if ([[_dataArray objectAtIndex:indexPath.row]isKindOfClass:[FirstCellMember class]]) {
+                wcCell.wTestLabel.text = nil;
+                wcCell.wImageView.image = nil;
                 wcCell.wTestLabel.textAlignment = NSTextAlignmentCenter;
                 wcCell.member = [_dataArray objectAtIndex:indexPath.row];
                 //    wcCell.textLabel.text = @"hello";
                 //    wcCell.detailTextLabel.text = @"dsfdsf";
-                wcCell.accessoryType = UITableViewCellAccessoryDetailButton;
+//                wcCell.accessoryType = UITableViewCellAccessoryDetailButton;
             }else{
                 
                 wcCell.wTestLabel.text = @"Isn't FC member";
@@ -279,11 +287,15 @@
             
         }else{
             if ([[_dataArray objectAtIndex:indexPath.row]isKindOfClass:[BaseCellMember class]]) {
+                wcCell.textLabel.text = nil;
+            
+                wcCell.detailTextLabel.text = nil;
+                wcCell.imageView.image = nil;
                 wcCell.wTestLabel.textAlignment = NSTextAlignmentCenter;
                 wcCell.baseMember = [_dataArray objectAtIndex:indexPath.row];
                 //    wcCell.textLabel.text = @"hello";
                 //    wcCell.detailTextLabel.text = @"dsfdsf";
-                wcCell.accessoryType = UITableViewCellAccessoryDetailButton;
+//                wcCell.accessoryType = UITableViewCellAccessoryDetailButton;
             }else{
                 wcCell.textLabel.text = @"Isn't BC member";
             }
@@ -300,9 +312,12 @@
         }
         if (_isCustomCell) {
             if ([[memberItem objectAtIndex:indexPath.row]isKindOfClass:[FirstCellMember class]]) {
+                wcCell.wTestLabel.text = nil;
+                wcCell.wImageView.image = nil;
+
                 wcCell.wTestLabel.textAlignment = NSTextAlignmentCenter;
                 wcCell.member = [memberItem objectAtIndex:indexPath.row];
-                wcCell.accessoryType = UITableViewCellAccessoryDetailButton;
+//                wcCell.accessoryType = UITableViewCellAccessoryDetailButton;
             }else{
                 
                 wcCell.wTestLabel.text = @"Isn't FC member";
@@ -310,9 +325,13 @@
             
         }else{
             if ([[memberItem objectAtIndex:indexPath.row]isKindOfClass:[BaseCellMember class]]) {
+                wcCell.textLabel.text = nil;
+                
+                wcCell.detailTextLabel.text = nil;
+                wcCell.imageView.image = nil;
                 wcCell.wTestLabel.textAlignment = NSTextAlignmentCenter;
                 wcCell.baseMember = [memberItem objectAtIndex:indexPath.row];
-                wcCell.accessoryType = UITableViewCellAccessoryDetailButton;
+//                wcCell.accessoryType = UITableViewCellAccessoryDetailButton;
             }else{
                 
                 wcCell.textLabel.text = @"Isn't BC member";
@@ -340,7 +359,7 @@
     if (tableView.style == UITableViewStylePlain) {
         string = @"footer";
     }else{
-        string = nil;
+        string = @"ff";
     }
     return string;
 }
@@ -356,23 +375,23 @@
     return NO;
 }
 //返回表示图的分组标题的数组
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
-    NSArray *aray = [[NSArray alloc]init];
-    if (tableView.style == UITableViewStylePlain) {
-        aray = nil;
-    }else{
-        NSMutableArray *mArray = [[NSMutableArray alloc]init];
-        for (int i = 0; i<_dataArray.count; i++) {
-            if ([[_dataArray objectAtIndex:i]isKindOfClass:[NSDictionary class]]) {
-                NSDictionary *dic = [_dataArray objectAtIndex:i];
-                NSString *seName = [NSString stringWithFormat:@"%@%d",[dic objectForKey:keyForSectionName],i];
-                [mArray addObject:seName];
-            }
-        }
-        aray = mArray;
-    }
-    return aray;
-}
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+//    NSArray *aray = [[NSArray alloc]init];
+//    if (tableView.style == UITableViewStylePlain) {
+//        aray = nil;
+//    }else{
+//        NSMutableArray *mArray = [[NSMutableArray alloc]init];
+//        for (int i = 0; i<_dataArray.count; i++) {
+//            if ([[_dataArray objectAtIndex:i]isKindOfClass:[NSDictionary class]]) {
+//                NSDictionary *dic = [_dataArray objectAtIndex:i];
+//                NSString *seName = [NSString stringWithFormat:@"%@%d",[dic objectForKey:keyForSectionName],i];
+//                [mArray addObject:seName];
+//            }
+//        }
+//        aray = mArray;
+//    }
+//    return aray;
+//}
 //
 //- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index{
 //    
@@ -380,7 +399,7 @@
 //}
 //处理编辑状态的方法
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    NSLog(@"tableViewCell be Edited");
 }
 //处理移动状态的方法
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{

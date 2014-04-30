@@ -12,7 +12,7 @@ typedef void (^MyBlock)(customButton *);
 @interface customButton : UIButton
 
 
-@property(nonatomic,copy) MyBlock myblock;
+@property(nonatomic,strong) MyBlock myblock;
 @property(nonatomic,assign) NSInteger numOfType;
 
 
